@@ -1,0 +1,60 @@
+/* Navbar */
+.navbar {
+    background: #fff;
+    padding: 1.25rem;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar ul {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.navbar li a {
+    display: block;
+    font-weight: 600;
+    transition: 350ms;
+}
+
+.navbar li a:hover {
+    color: var(--primary-color);
+}
+
+.navbar li:last-child a {
+    margin-left: 0.7rem;
+}
+
+.navbar i {
+    margin-right: 0.7rem;
+}
+
+/* Hero */
+.hero {
+    margin-bottom: 3.5rem;
+}
+
+.hero .container {
+    background: url("../images/hero-bg.png") no-repeat;
+    background-size: contain;
+    background-position: center bottom;
+    height: 550px;
+}
+
+.hero .hero-content {
+    width: 70%;
+}
+
+.hero .hero-text {
+    width: 70%;
+    margin-bottom: 1.5rem;
+}
+
+.hero-heading {
+    margin: 3rem 0 1.5rem;
+}
