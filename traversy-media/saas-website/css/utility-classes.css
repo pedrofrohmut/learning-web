@@ -1,4 +1,4 @@
-/* Utility Class */
+/* Containers */
 .container {
     max-width: 1100px;
     margin: 0 auto;
@@ -11,6 +11,7 @@
     padding: 0 1rem;
 }
 
+/* Text */
 .text-xxl {
     font-size: 3rem;
     line-height: 1.2;
@@ -39,4 +40,35 @@
     font-size: 0.75rem;
     line-height: 1.2;
     font-weight: 300;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Background */
+.bg-black {
+    background-color: var(--black);
+}
+
+.bg-white {
+    background-color: var(--white);
+}
+
+.bg-light {
+    background-color: var(--light-color);
+}
+
+.bg-dark {
+    background-color: var(--dark-color);
+}
+
+.bg-primary {
+    background-color: var(--primary-color);
+}
+
+/* Card */
+.card {
+    border-radius: 10px;
+    padding: 1.2em;
 }

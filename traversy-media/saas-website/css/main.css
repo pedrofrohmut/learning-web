@@ -8,12 +8,15 @@
 
 :root {
     font-size: 16px;
+
     --primary-color: #4891ff;
-    --light-color: #e4e4e6;
+    --light-color: #e1e1e1;
+    --dark-color: #111;
+
     --light-grey: #f1f1f1;
     --dark-gray: #333;
-    --dark-color: #111;
     --white: #fff;
+    --black: #000;
 }
 
 body {
@@ -21,6 +24,7 @@ body {
     font-size: 1rem;
     line-height: 1.5;
     background: var(--light-grey);
+    /* overflow-x: hidden; */
 }
 
 a {
@@ -43,10 +47,10 @@ img {
     background-color: var(--light-color);
     color: var(--dark-grey);
     font-weight: 600;
-    text-decoration: none;
     border-radius: 0.4em;
     cursor: pointer;
     transition: 350ms;
+    border: 0;
 }
 
 .btn:hover {
@@ -66,4 +70,5 @@ img {
 .btn-block {
     display: block;
     width: 100%;
+    text-align: center;
 }
