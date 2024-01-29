@@ -1,6 +1,6 @@
-const menuButton = document.querySelector("button.menu-button")
-const menu = document.querySelector("ul.menu")
-const closeButton = document.querySelector("button.close-menu")
+const menuButton = document.querySelector(".menu-button")
+const menu = document.querySelector(".menu")
+const closeButton = document.querySelector(".close-menu")
 
 document.addEventListener("DOMContentLoaded", () => {
     menuButton.addEventListener("click", () => {

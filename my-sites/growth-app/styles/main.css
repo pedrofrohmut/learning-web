@@ -1,5 +1,7 @@
+/* @import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"); */
 @import url("./navbar.css");
 @import url("./section-hero.css");
+@import url("./section-video.css");
 
 /*
     Media Queries: 960px, 670px and 500px
@@ -10,7 +12,7 @@
  */
 
 :root {
-    font-size: 13px;
+    font-size: 16px;
 
     --primary-color: #4891ff;
 
@@ -32,7 +34,9 @@
     --border-radius: 7px;
 }
 
-*, *::after, *::before {
+*,
+*::after,
+*::before {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -46,10 +50,17 @@ body {
 
 .container {
     margin: 0 auto;
+    max-width: 1100px;
 }
 
-@media(min-width: 960px) {
-    .container {
-        max-width: 960px;
-    }
+.container-sm {
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+
+@media (min-width: 670px) {
+}
+
+@media (min-width: 960px) {
 }
