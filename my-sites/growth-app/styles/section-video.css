@@ -1,7 +1,6 @@
 .video {
     background-color: var(--black);
     color: var(--gray-200);
-    padding: 2rem;
 }
 
 .video .heading {
