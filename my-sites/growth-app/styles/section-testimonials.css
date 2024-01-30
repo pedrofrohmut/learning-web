@@ -1,0 +1,37 @@
+.testimonials {
+    background-color: var(--gray-700);
+    color: var(--gray-100);
+    padding: 2rem 1.2rem 2rem;
+}
+
+.testimonials .heading {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+}
+
+.testimonials .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.testimonials .card {
+    padding: 0.3rem;
+}
+
+.testimonials .card .content {
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+}
+
+.testimonials .card .author {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.1rem;
+}
+
+.testimonials .card .company {
+    font-size: 0.9rem;
+    font-weight: 400;
+}

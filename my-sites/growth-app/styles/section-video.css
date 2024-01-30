@@ -1,4 +1,28 @@
 .video {
     background-color: var(--black);
-    color: var(--gray-100);
+    color: var(--gray-200);
+    padding: 2rem 1.2rem;
+}
+
+.video .heading {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.video .content {
+    display: flex;
+    flex-direction: column;
+}
+
+.video .preview {
+    margin-bottom: 1.5rem;
+}
+
+.video .btn {
+    text-decoration: none;
+    padding: 0.7em 1.4em;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: var(--border-radius);
+    margin: 0 auto;
 }
