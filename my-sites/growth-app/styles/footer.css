@@ -70,12 +70,14 @@ footer.footer {
     font-weight: 600;
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius);
+    cursor: pointer;
 }
 
 .footer-grid .social-icons {
     font-size: 2rem;
     display: flex;
     gap: 1rem;
+    cursor: pointer;
 }
 
 @media (min-width: 670px) {
