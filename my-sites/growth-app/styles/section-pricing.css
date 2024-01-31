@@ -3,19 +3,20 @@
     color: var(--gray-600);
 }
 
-.pricing .main-heading {
-    font-size: 2.0rem;
+.pricing .container-sm > .heading {
+    font-size: 1.6rem;
     font-weight: 600;
     text-align: center;
 }
 
-.pricing .main-subheading {
+.pricing .container-sm > .subheading {
     margin-bottom: 2rem;
+    text-align: center;
 }
 
 .pricing .main-subheading,
 .pricing .footer {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 300;
     text-align: center;
     color: var(--gray-500);

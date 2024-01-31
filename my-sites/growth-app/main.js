@@ -11,3 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
         menu.classList.remove("open")
     })
 })
+
+
+// TODO: make js for clearing active on faq menu and then add to clicked one
+
+// TODO: make js for carosel on faq: open 1 close others. Clean open class on
+// faq-card from others and add to clicked one
