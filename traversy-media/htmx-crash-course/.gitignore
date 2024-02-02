@@ -1,0 +1,10 @@
+**/node_modules/
+yarn.lock
+package-lock.json
+
+# Emacs
+.projectile
+
+# Vim
+*.swo
+*.swp
