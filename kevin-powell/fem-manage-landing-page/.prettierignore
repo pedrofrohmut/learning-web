@@ -1,0 +1,5 @@
+**/*.css
+**/*.md
+yarn.lock
+images/
+node_modules/
