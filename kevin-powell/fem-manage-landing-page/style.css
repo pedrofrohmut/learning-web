@@ -273,6 +273,36 @@ p[data-width="wide"] {
     .primary-header[data-overlay] .icon-hamburger { display: none; }
 }
 
+/* CTA */
+
+.cta {
+    position: relative;
+    isolation: isolate;
+    text-align: center;
+}
+
+.cta::before {
+    content: "";
+    inset: 0;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-image: url("images/bg-simplify-section-mobile.svg");
+    transform: unset;
+    background-position: 0 0;
+}
+
+@media (min-width: 50em) {  /* DESKTOP */
+    .cta {
+        text-align: left;
+    }
+
+    .cta::before {
+        background-image: url("images/bg-simplify-section-desktop.svg");
+        transform: rotate(180deg);
+        background-position: -13rem 0rem;
+    }
+}
+
 /* Utility Classes (Should always be at the bottom of the cascading to be useful) */
 
 .text-primary-400 { color: var(--color-primary-400); }
@@ -345,14 +375,10 @@ p[data-width="wide"] {
 }
 
 /* Using 'where' to low the Specificity (Alternative to: .flow * + *) */
-:where(.flow :not(:first-child)) {
-    margin-top: 2.5em;
-}
+:where(.flow :not(:first-child))    { margin-top: 2.5em; }
 
 /* Using 'where' to low the Specificity (Alternative to: .flow * + *) */
-:where(.flow-sm :not(:first-child)) {
-    margin-top: 1.0em;
-}
+:where(.flow-sm :not(:first-child)) { margin-top: 1.0em; }
 
 .even-columns {
     display: grid;
@@ -365,3 +391,13 @@ p[data-width="wide"] {
         grid-auto-columns: 1fr; /* Make the columns even */
     }
 }
+
+.justify-self-end { justify-self: end; }
+
+@media (min-width: 50em) {
+    .justify-self-end-md {
+        justify-self: end;
+    }
+}
+
+.vertical-align-center { align-items: center; }
