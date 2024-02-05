@@ -28,6 +28,7 @@
     --fs-600: 1rem;      /* 16px */
     --fs-700: 1.875rem;  /* 30px */
     --fs-800: 2.5rem;    /* 40px */
+    --fs-850: 3.0rem;    /* 48px */
     --fs-900: 3.5rem;    /* 56px */
 
     --fs-body: var(--fs-400);
@@ -49,7 +50,7 @@
 
 @media (min-width: 50em) { /* 800px */
     :root {
-        --fs-body: var(--fs-500);
+        --fs-body: var(--fs-600);
         --fs-primary-heading: var(--fs-900);
         --fs-secondary-heading: var(--fs-800);
         --fs-nav: var(--fs-500);
@@ -139,6 +140,15 @@ body {
     font-size: var(--fs-body);
     font-family: var(--ff-body);
     color: var(--color-primary-400);
+}
+
+p:not([class]) {
+    opacity: 0.7;
+    max-width: 35ch;
+}
+
+p[data-width="wide"] {
+    max-width: 45ch;
 }
 
 /* Button */
@@ -332,6 +342,16 @@ body {
 
     width: min(var(--max-width), 100% - var(--x-margin));
     margin-inline: auto;
+}
+
+/* Using 'where' to low the Specificity (Alternative to: .flow * + *) */
+:where(.flow :not(:first-child)) {
+    margin-top: 2.5em;
+}
+
+/* Using 'where' to low the Specificity (Alternative to: .flow * + *) */
+:where(.flow-sm :not(:first-child)) {
+    margin-top: 1.0em;
 }
 
 .even-columns {
