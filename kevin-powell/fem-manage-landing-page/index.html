@@ -19,23 +19,31 @@
   <body>
     <header class="primary-header">
       <div class="container">
-        <!-- Logo -->
-        <a href="#">
-          <img src="images/logo.svg" alt="logo" />
-        </a>
+        <div class="nav-wrapper">
+          <!-- Logo -->
+          <a href="#">
+            <img src="images/logo.svg" alt="logo" class="logo-img" />
+          </a>
 
-        <!-- Navbar -->
-        <nav class="primary-navigation">
-          <ul aria-label="Primary" role="list" class="nav-list">
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Product</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Carrers</a></li>
-            <li><a href="#">Community</a></li>
-          </ul>
-        </nav>
+          <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+            <img class="icon-hamburger" alt="" src="images/icon-hamburger.svg" aria-hidden="true" />
+            <img class="icon-close" alt="" src="images/icon-close.svg" aria-hidden="true" />
+            <span class="visually-hidden">Menu</span>
+          </button>
 
-        <button class="button">Get Started</button>
+          <!-- Navbar -->
+          <nav class="primary-navigation" id="primary-navigation">
+            <ul aria-label="Primary" role="list" class="nav-list">
+              <li><a href="#">Pricing</a></li>
+              <li><a href="#">Product</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Carrers</a></li>
+              <li><a href="#">Community</a></li>
+            </ul>
+          </nav>
+
+          <button class="button | display-sm-none display-md-inline-flex">Get Started</button>
+        </div>
       </div>
     </header>
 
@@ -51,14 +59,16 @@
                 Manage makes it simple for software teams to plan day-to-day tasks while keeping the
                 larger team goals in view.
               </p>
-              <button>Get started</button>
+              <button class="button">Get started</button>
             </div>
 
             <div>
-                <img src="images/illustration-intro.svg" alt="illustration intro" />
+              <img src="images/illustration-intro.svg" alt="illustration intro" />
             </div>
-          </div> <!--even-columns-->
-        </div> <!--container-->
+          </div>
+          <!--even-columns-->
+        </div>
+        <!--container-->
       </section>
 
       <section class="padding-block-900">
@@ -78,9 +88,9 @@
                 <li>
                   <h3 class="fs-600 fw-bold">Track company-wide progress</h3>
                   <p>
-                    See how your day-to-day tasks fit into the wider vision. Go from tracking progress
-                    at the milestone level all the way done to the smallest of details. Never lose
-                    sight of the bigger picture again.
+                    See how your day-to-day tasks fit into the wider vision. Go from tracking
+                    progress at the milestone level all the way done to the smallest of details.
+                    Never lose sight of the bigger picture again.
                   </p>
                 </li>
                 <li>
@@ -94,8 +104,9 @@
                 <li>
                   <h3 class="fs-600 fw-bold">Everything you need in one place</h3>
                   <p>
-                    Stop jumping from one service to another to communicate, store files, track tasks
-                    and share documents. Manage offers an all-in-one team productivity solution.
+                    Stop jumping from one service to another to communicate, store files, track
+                    tasks and share documents. Manage offers an all-in-one team productivity
+                    solution.
                   </p>
                 </li>
               </ul>
@@ -172,18 +183,21 @@
                 <li><a href="#">Careers</a></li>
                 <li><a href="#">Community</a></li>
                 <li><a href="#">Privacy Policy</a></li>
+              </ul>
             </nav>
           </div>
 
           <div>
             <form action="">
-              <input type="email" placeholder="Updates in your inbox…">
+              <input type="email" placeholder="Updates in your inbox…" />
               <button class="button" type="submit">Go</button>
               <p>Copyright 2020. All Rights Reserved</p>
             </form>
           </div>
-        </div> <!--event-columns-->
-      </div> <!--container-->
+        </div>
+        <!--event-columns-->
+      </div>
+      <!--container-->
     </footer>
 
     <script type="module" src="/main.js"></script>
