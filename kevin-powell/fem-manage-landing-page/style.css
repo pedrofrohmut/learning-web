@@ -279,6 +279,8 @@ p[data-width="wide"] {
     position: relative;
     isolation: isolate;
     text-align: center;
+    padding-block: 6rem;
+    padding-inline: 1rem;
 }
 
 .cta::before {
@@ -288,7 +290,7 @@ p[data-width="wide"] {
     background-repeat: no-repeat;
     background-image: url("images/bg-simplify-section-mobile.svg");
     transform: unset;
-    background-position: 0 0;
+    background-position: 0 3rem;
 }
 
 @media (min-width: 50em) {  /* DESKTOP */
