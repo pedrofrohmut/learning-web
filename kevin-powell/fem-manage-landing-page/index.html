@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Vite App</title>
+    <title>FEM - Manage Landing Page</title>
 
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon-32x32.png">
     <link rel="stylesheet" href="style.css" media="all" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,7 +22,9 @@
         <div class="nav-wrapper">
           <!-- Logo -->
           <a href="#">
-            <img src="images/logo.svg" alt="logo" class="logo-img" />
+            <svg class="logo-svg">
+              <use xlink:href="images/custom-logo.svg#logo"></use>
+            </svg>
           </a>
 
           <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
@@ -65,10 +67,8 @@
             <div>
               <img src="images/illustration-intro.svg" alt="illustration intro" />
             </div>
-          </div>
-          <!--even-columns-->
-        </div>
-        <!--container-->
+          </div> <!--even-columns-->
+        </div> <!--container-->
       </section>
 
       <section class="padding-block-900">
@@ -144,46 +144,58 @@
       </section>
     </main>
 
-    <footer class="bg-neutral-900 text-neutral-100 padding-block-700">
+    <footer class="primary-footer | bg-neutral-900 text-neutral-100 padding-block-700">
       <div class="container">
-        <div class="even-columns">
-          <div>
-            <a href="#">
-              <img src="images/logo.svg" alt="logo" />
+        <div class="primary-footer-wrapper">
+          <div class="logo-and-socials">
+            <a href="#" class="footer-logo" aria-label="home">
+              <svg class="logo" width="146" height="24">
+                <use xlink:href="images/custom-logo.svg#logo"></use>
+              </svg>
             </a>
 
-            <ul role="list" aria-label="social links">
+            <ul role="list" aria-label="social links" class="social-list">
               <li>
                 <a aria-label="facebook" href="#">
-                  <img src="images/icon-facebook.svg" alt="facebook icon" />
+                  <svg class="icon">
+                    <use xlink:href="images/custom-social-icons.svg#icon-facebook"></use>
+                  </svg>
                 </a>
               </li>
               <li>
                 <a aria-label="youtube" href="#">
-                  <img src="images/icon-youtube.svg" alt="youtube icon" />
+                  <svg class="icon">
+                    <use xlink:href="images/custom-social-icons.svg#icon-youtube"></use>
+                  </svg>
                 </a>
               </li>
               <li>
                 <a aria-label="twitter" href="#">
-                  <img src="images/icon-twitter.svg" alt="twitter icon" />
+                  <svg class="icon">
+                    <use xlink:href="images/custom-social-icons.svg#icon-twitter"></use>
+                  </svg>
                 </a>
               </li>
               <li>
                 <a aria-label="pinterest" href="#">
-                  <img src="images/icon-pinterest.svg" alt="pinterest icon" />
+                  <svg class="icon">
+                    <use xlink:href="images/custom-social-icons.svg#icon-pinterest"></use>
+                  </svg>
                 </a>
               </li>
               <li>
                 <a aria-label="instagram" href="#">
-                  <img src="images/icon-instagram.svg" alt="instagram icon" />
+                  <svg class="icon">
+                    <use xlink:href="images/custom-social-icons.svg#icon-instagram"></use>
+                  </svg>
                 </a>
               </li>
             </ul>
           </div>
 
-          <div>
+          <div class="navigation">
             <nav class="footer-nav">
-              <ul aria-label="Footer" role="list">
+              <ul class="flow-sm" aria-label="Footer" role="list">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Pricing</a></li>
                 <li><a href="#">Products</a></li>
@@ -195,17 +207,15 @@
             </nav>
           </div>
 
-          <div>
+          <div class="form">
             <form action="">
               <input type="email" placeholder="Updates in your inbox…" />
               <button class="button" type="submit">Go</button>
               <p>Copyright 2020. All Rights Reserved</p>
             </form>
           </div>
-        </div>
-        <!--event-columns-->
-      </div>
-      <!--container-->
+        </div> <!--event-columns-->
+      </div> <!--container-->
     </footer>
 
     <script type="module" src="/main.js"></script>

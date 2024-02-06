@@ -190,9 +190,10 @@ p[data-width="wide"] {
     padding-top: var(--size-700);
 }
 
-.logo-img {
+.logo-svg {
     position: relative;
     top: 0.4rem;
+    width: 10rem;
 }
 
 .nav-wrapper {
@@ -271,6 +272,103 @@ p[data-width="wide"] {
     .mobile-nav-toggle .icon-close { display: none; }
     .primary-header[data-overlay] .icon-close { display: block; }
     .primary-header[data-overlay] .icon-hamburger { display: none; }
+}
+
+/* Footer */
+
+.primary-footer {
+    --logo-color: var(--color-neutral-100);
+}
+
+.primary-footer-wrapper .logo-and-socials {
+    grid-area: logo-and-socials;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: var(--size-700);
+}
+
+.primary-footer-wrapper .navigation {
+    grid-area: navigation;
+}
+
+.primary-footer-wrapper .form {
+    grid-area: form;
+}
+
+.primary-footer-wrapper {
+    display: grid;
+    gap: var(--size-700);
+    grid-template-areas:
+        "form"
+        "navigation"
+        "logo-and-socials"
+    ;
+}
+
+@media (min-width: 50em) { /* Desktop */
+    .primary-footer-wrapper {
+        grid-template-areas: "logo-and-socials navigation form";
+    }
+
+    .primary-footer-wrapper .logo-and-socials {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 50em) { /* Mobile */
+    .primary-footer-wrapper > * {
+        margin-inline: auto;
+    }
+}
+
+
+/* Footer Navigation */
+
+.footer-nav {
+    columns: 2;
+}
+
+.footer-nav a {
+    color: var(--color-neutral-100);
+    font-size: var(--fs-600);
+    text-decoration: none;
+    transition: color 300ms ease-out;
+}
+
+.footer-nav a:where(:focus, :hover) {
+    color: var(--color-accent-400);
+}
+
+.social-list {
+    display: flex;
+    gap: var(--size-600);
+    /* justify-content: center; */
+}
+
+.social-list .icon {
+    width: var(--size-600);
+    fill: var(--color-neutral-100);
+    transition: fill 300ms ease-out;
+    aspect-ratio: 1; /* Removes the padding-block browser creates */
+}
+
+.social-list a:is(:hover, :focus) .icon {
+    fill: var(--color-accent-400);
+}
+
+@media (min-width: 50em) {
+    .social-list {
+        display: flex;
+        gap: var(--size-400);
+        /* justify-content: left; */
+    }
+
+    .social-list .icon {
+        width: var(--size-500);
+    }
 }
 
 /* CTA */
