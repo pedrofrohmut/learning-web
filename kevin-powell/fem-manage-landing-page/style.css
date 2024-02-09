@@ -40,6 +40,7 @@
     --size-100: 0.25rem;
     --size-200: 0.5rem;
     --size-300: 0.75rem;
+    --size-350: 0.85rem;
     --size-400: 1rem;
     --size-500: 1.5rem;
     --size-600: 2rem;
@@ -173,6 +174,10 @@ p[data-width="wide"] {
     color: var(--color-accent-400);
 }
 
+.button[data-shadow="none"] {
+    box-shadow: none;
+}
+
 .button:hover,
 .button:focus-visible {
     background-color: var(--color-accent-300);
@@ -294,6 +299,10 @@ p[data-width="wide"] {
 
 .primary-footer-wrapper .form {
     grid-area: form;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
 .primary-footer-wrapper {
@@ -304,6 +313,18 @@ p[data-width="wide"] {
         "navigation"
         "logo-and-socials"
     ;
+}
+
+.primary-footer-wrapper .form form {
+    display: flex;
+    gap: var(--size-200);
+}
+
+input:where([type="email"], [type="text"], [type="password"]) {
+    border-radius: 100vw;
+    border: 0;
+    padding: var(--size-400) var(--size-400);
+    font-size: var(--fs-500);
 }
 
 @media (min-width: 50em) { /* Desktop */
@@ -329,6 +350,9 @@ p[data-width="wide"] {
 
 .footer-nav {
     columns: 2;
+    gap: max(4rem, 5vw);
+    /* display: flex; */
+    /* justify-content: space-between; */
 }
 
 .footer-nav a {
