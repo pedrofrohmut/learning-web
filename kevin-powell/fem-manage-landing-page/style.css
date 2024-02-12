@@ -48,6 +48,7 @@
     --size-800: 4rem;
     --size-850: 4.5rem;
     --size-900: 5rem;
+    --size-950: 6rem;
 }
 
 /* Box sizing rules */
@@ -156,7 +157,7 @@ body {
 input:where([type="email"], [type="text"], [type="password"]) {
     border-radius: 100vw;
     border: 0;
-    padding: var(--size-300) var(--size-400);
+    padding: var(--size-400) var(--size-400);
     font-size: var(--fs-500);
 }
 
@@ -295,6 +296,13 @@ input:where([type="email"], [type="text"], [type="password"]) {
     --logo-color: var(--color-neutral-100);
 }
 
+/* HTML Order */
+.primary-footer__logo       { grid-area: logo;       }
+.primary-footer__socials    { grid-area: socials;    }
+.primary-footer__navigation { grid-area: navigation; }
+.primary-footer__form       { grid-area: form;       }
+.primary-footer__copyrights { grid-area: copyrights; }
+
 .primary-footer__wrapper {
     display: grid;
     gap: var(--size-700);
@@ -307,20 +315,6 @@ input:where([type="email"], [type="text"], [type="password"]) {
         "copyrights"
     ;
 }
-
-@media (min-width: 50em) {
-    .primary-footer__wrapper {
-        grid-template-areas: "logo socials navigation form copyrights";
-    }
-}
-
-
-/* HTML Order */
-.primary-footer__logo       { grid-area: logo;       }
-.primary-footer__socials    { grid-area: socials;    }
-.primary-footer__navigation { grid-area: navigation; }
-.primary-footer__form       { grid-area: form;       }
-.primary-footer__copyrights { grid-area: copyrights; }
 
 .primary-footer__logo {
     margin-inline: auto;
@@ -339,6 +333,10 @@ input:where([type="email"], [type="text"], [type="password"]) {
     aspect-ratio: 1; /* Removes the padding-block browser creates */
 }
 
+.primary-footer__socials .icon:is(:hover, :focus) {
+    fill: var(--color-accent-400);
+}
+
 .primary-footer__navigation {
     columns: 2;
     gap: max(4rem, 5vw);
@@ -352,11 +350,12 @@ input:where([type="email"], [type="text"], [type="password"]) {
     transition: color 300ms ease-out;
 }
 
-.primary-footer__form {
-    display: flex;
-    gap: var(--size-200);
+.primary-footer__navigation a:is(:hover, :focus) {
+    color: var(--color-accent-400);
 }
+
 .primary-footer__form input {
+    margin-right: var(--size-200);
     min-width: 240px;
 }
 
@@ -365,97 +364,47 @@ input:where([type="email"], [type="text"], [type="password"]) {
     opacity: 0.7;
 }
 
-/* .primary-footer__socials { */
-/*     display: flex; */
-/*     flex-direction: column-reverse; */
-/*     align-items: center; */
-/*     gap: var(--size-700); */
-/* } */
+@media (min-width: 56em) {
+    .primary-footer__wrapper {
+        justify-content: space-between;
+        grid-template-areas:
+            "logo    navigation form"
+            "socials navigation copyrights";
+        grid-template-columns: min-content 1fr min-content;
+        column-gap: var(--size-950);
+    }
 
-/* .primary-footer-wrapper .navigation { */
-/*     grid-area: navigation; */
-/* } */
+    .primary-footer__logo {
+        min-width: 146px;
+        margin-inline: unset;
+    }
 
-/* .primary-footer-wrapper .form { */
-/*     grid-area: form; */
-/*     display: flex; */
-/*     flex-direction: column; */
-/*     justify-content: space-between; */
-/*     align-items: flex-end; */
-/* } */
+    .primary-footer__socials {
+        gap: var(--size-300);
+    }
 
-/* .primary-footer-wrapper .form form { */
-/*     display: flex; */
-/*     gap: var(--size-200); */
-/* } */
+    .primary-footer__socials .icon {
+        width: var(--size-500);
+    }
 
-/* @media (min-width: 50em) { /\* Desktop *\/ */
-/*     .primary-footer-wrapper { */
-/*         grid-template-areas: "logo-and-socials navigation form"; */
-/*     } */
+    .primary-footer__navigation {
+        /* gap: var(--size-900); */
+        padding: 0;
+    }
 
-/*     .primary-footer-wrapper .logo-and-socials { */
-/*         flex-direction: column; */
-/*         justify-content: space-between; */
-/*         align-items: flex-start; */
-/*     } */
-/* } */
+    .primary-footer__form {
+        /* justify-content: flex-end; */
+        min-width: 312px;
+    }
 
-/* @media (max-width: 50em) { /\* Mobile *\/ */
-/*     .primary-footer-wrapper > * { */
-/*         margin-inline: auto; */
-/*     } */
-/* } */
+    .primary-footer__form input {
+        min-width: 216px;
+    }
 
-
-/* /\* Footer Navigation *\/ */
-
-/* .footer-nav { */
-/*     columns: 2; */
-/*     gap: max(4rem, 5vw); */
-/*     /\* display: flex; *\/ */
-/*     /\* justify-content: space-between; *\/ */
-/* } */
-
-/* .footer-nav a { */
-/*     color: var(--color-neutral-100); */
-/*     font-size: var(--fs-600); */
-/*     text-decoration: none; */
-/*     transition: color 300ms ease-out; */
-/* } */
-
-/* .footer-nav a:where(:focus, :hover) { */
-/*     color: var(--color-accent-400); */
-/* } */
-
-/* .socials { */
-/*     display: flex; */
-/*     gap: var(--size-600); */
-/*     /\* justify-content: center; *\/ */
-/* } */
-
-/* .socials .icon { */
-/*     width: var(--size-600); */
-/*     fill: var(--color-neutral-100); */
-/*     transition: fill 300ms ease-out; */
-/*     aspect-ratio: 1; /\* Removes the padding-block browser creates *\/ */
-/* } */
-
-/* .socials a:is(:hover, :focus) .icon { */
-/*     fill: var(--color-accent-400); */
-/* } */
-
-/* @media (min-width: 50em) { */
-/*     .socials { */
-/*         display: flex; */
-/*         gap: var(--size-400); */
-/*         /\* justify-content: left; *\/ */
-/*     } */
-
-/*     .socials .icon { */
-/*         width: var(--size-500); */
-/*     } */
-/* } */
+    .primary-footer__copyrights {
+        text-align: right;
+    }
+}
 
 /* Slider */
 
@@ -562,7 +511,7 @@ input:where([type="email"], [type="text"], [type="password"]) {
     position: relative;
     isolation: isolate;
     text-align: center;
-    padding-block: 6rem;
+    padding-block: var(--size-950);
     padding-inline: 1rem;
 }
 
@@ -583,7 +532,7 @@ input:where([type="email"], [type="text"], [type="password"]) {
 @media (min-width: 50em) {  /* DESKTOP */
     .cta {
         text-align: left;
-        padding-block: 3.5rem;
+        padding-block: var(--size-800);
     }
 
     .cta::before {
