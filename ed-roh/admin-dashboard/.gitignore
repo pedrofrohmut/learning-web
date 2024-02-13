@@ -1,0 +1,11 @@
+# Docker volume
+mongo_volume/
+
+# Database secrets
+docker-compose.yml
+server/.env
+server/secrets.js
+
+# Default
+server/nodo_modules/
+server/yarn.lock
