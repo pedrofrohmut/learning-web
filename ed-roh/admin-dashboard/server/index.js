@@ -5,10 +5,15 @@ import dotenv from "dotenv"
 import helmet from "helmet"
 import morgan from "morgan"
 
+// Routes
 import clientRoutes from "./routes/client-routes.js"
 import generalRoutes from "./routes/general-routes.js"
 import managementRoutes from "./routes/management-routes.js"
 import salesRoutes from "./routes/sales-routes.js"
+
+// Data
+import userModel from "./models/user.js"
+import { dataUser } from "./data.js"
 
 dotenv.config()
 
@@ -22,6 +27,7 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }))
 app.use(morgan("common"))
 app.use(cors())
 
+// Routes
 app.use("/client", clientRoutes)
 app.use("/general", generalRoutes)
 app.use("/management", managementRoutes)
@@ -40,6 +46,9 @@ const run = async () => {
         conn = await mongoose.connect(process.env.MONGO_URL)
         console.log("Connected to MongoDB")
         app.listen(PORT, console.log("Server listening at http://localhost:", PORT))
+
+        // Only add data one time
+        //userModel.insertMany(dataUser)
     } catch (err) {
         console.error(err)
     } finally {

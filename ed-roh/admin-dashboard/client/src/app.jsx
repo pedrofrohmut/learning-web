@@ -9,23 +9,19 @@ import Dashboard from "./scenes/dashboard"
 import Layout from "./scenes/layout"
 
 const App = () =>  {
-    const mode = useSelector(state => state.global.mode)
-    const theme = useMemo(() => createTheme(themeSettings(mode), [mode]))
+    const theme = useSelector(state => state.global.mode)
 
     return (
-        <div className="app">
-            <BrowserRouter>
-                <ThemeProvider theme={theme}>
-                    <CssBaseline />
-                    <Routes>
-                        <Route element={<Layout />}>
-                            <Route path="/" element={<Navigate to="/dashboard" replace />} />
-                            <Route path="/dashboard" element={<Dashboard />} />
-                        </Route>
-                    </Routes>
-                </ThemeProvider>
-            </BrowserRouter>
-        </div>
+	<div className={`app ${theme}`}>
+	    <BrowserRouter>
+		<Routes>
+		    <Route element={<Layout />}>
+			<Route path="/" element={<Navigate to="/dashboard" replace />} />
+			<Route path="/dashboard" element={<Dashboard />} />
+		    </Route>
+		</Routes>
+	    </BrowserRouter>
+	</div>
     )
 }
 

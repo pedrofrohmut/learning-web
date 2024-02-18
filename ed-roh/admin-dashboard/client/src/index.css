@@ -2,11 +2,227 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
 
-html,
-body,
-#root,
-.app {
+:root {
+    --fw-regular: 400;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+
+    --grey-10: #f6f6f6;
+    --grey-50: #F0F0F0;
+    --grey-100: #E0E0E0;
+    --grey-200: #C2C2C2;
+    --grey-300: #A3A3A3;
+    --grey-400: #858585;
+    --grey-500: #666666;
+    --grey-600: #525252;
+    --grey-700: #3D3D3D;
+    --grey-800: #292929;
+    --grey-900: #141414;
+    --grey-950: #0A0A0A;
+
+
+    --primary-50: #F2F3FA;
+    --primary-100: #D4D8F0;
+    --primary-200: #98A1DA;
+    --primary-300: #5C6AC4;
+    --primary-400: #374498;
+    --primary-500: #21295C;
+    --primary-600: #1A2149;
+    --primary-700: #141836;
+    --primary-800: #0D1024;
+    --primary-900: #060811;
+    --primary-950: #030308;
+
+
+    --secondary-50: #FFFAF0;
+    --secondary-100: #FFF6E0;
+    --secondary-200: #FFECC2;
+    --secondary-300: #FFE3A3;
+    --secondary-400: #FFDA85;
+    --secondary-500: #FFD166;
+    --secondary-600: #FFBA1A;
+    --secondary-700: #CC8F00;
+    --secondary-800: #805A00;
+    --secondary-900: #332400;
+    --secondary-950: #0D0900;
+
+    /* Palette Dark Theme */
+    --dark-primary: var(--primary-400);
+    --dark-secondary: var(--secondary-300);
+    --dark-neutral: var(--grey-500);
+    --dark-bg: var(--primary-500);
+    --dark-text: var(--secondary-300);
+
+    /* Palette Light Theme */
+    --light-primary: var(--grey-50);
+    --light-secondary: var(--secondary-600);
+    --light-neutral: var(--grey-500);
+    --light-bg: var(--grey-50);
+    --light-text: var(--primary-400);
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: inherit;
+}
+
+html, body, #root, .app, .layout {
     height: 100%;
     width: 100%;
+}
+
+body {
     font-family: "Inter", sans-serif;
+}
+
+/* LIGHT */
+.app {
+    --bg-default: white;
+    --bg-alt: var(--grey-50);
+    --text-color: var(--light-text);
+
+    --neutral-100: var(--grey-900);
+    --neutral-200: var(--grey-800);
+    --neutral-300: var(--grey-700);
+    --neutral-400: var(--grey-600);
+    --neutral-500: var(--grey-500);
+    --neutral-600: var(--grey-400);
+    --neutral-700: var(--grey-300);
+    --neutral-800: var(--grey-200);
+    --neutral-900: var(--grey-100);
+
+    background-color: var(--bg-default);
+    color: var(--text-color);
+}
+
+/* DARK */
+.app.dark {
+    --bg-default: var(--primary-700);
+    --bg-alt: var(--primary-600);
+    --text-color: var(--dark-text);
+
+    --neutral-100: var(--grey-100);
+    --neutral-200: var(--grey-200);
+    --neutral-300: var(--grey-300);
+    --neutral-400: var(--grey-400);
+    --neutral-500: var(--grey-500);
+    --neutral-600: var(--grey-600);
+    --neutral-700: var(--grey-700);
+    --neutral-800: var(--grey-800);
+    --neutral-900: var(--grey-900);
+
+    background-color: var(--bg-default);
+    color: var(--text-color);
+}
+
+/* General rules */
+
+.icon-button {
+    border: 0;
+    background-color: transparent;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Layout */
+
+.layout {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content 1fr;
+    grid-template-areas:
+	"sidebar header"
+	"sidebar main";
+}
+
+.layout__header {
+    grid-area: header;
+}
+
+.layout__sidebar {
+    grid-area: sidebar;
+}
+
+.layout__main {
+    grid-area: main;
+}
+
+/* Navbar */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 2em;
+}
+
+.navbar__left {
+    display: flex;
+    gap: 2em;
+    justify-content: space-between;
+}
+
+.navbar__search {
+    display: flex;
+    gap: 3rem;
+    border-radius: 9px;
+    background-color: var(--bg-alt);
+    padding: 0.1rem 1.5rem;
+}
+
+.navbar__search input {
+    background-color: transparent;
+    border: 0;
+    color: var(--text-color);
+    padding: 0.5em 1em;
+    font-weight: var(--fw-regular);
+}
+
+.navbar__right {
+    display: flex;
+    gap: 1em;
+}
+
+/* Sidebar */
+
+.sidebar {
+    background-color: var(--bg-alt);
+    font-size: 0.7rem;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar__menu {
+    flex: 1;
+}
+
+.sidebar__footer {
+    border-top: 2px solid var(--neutral-500);
+    padding: 2em 1.2em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar__profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100vmax;
+    object-fit: cover;
+}
+
+.sidebar__user-name {
+    font-weight: var(--fw-bold);
+    /* color: white; */
+}
+
+.sidebar__user-occupation {
+    /* color: white; */
 }
