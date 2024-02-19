@@ -49,18 +49,28 @@ const Sidebar = ({
     const navigate = useNavigate()
     const theme = useTheme()
 
+    const [items, setItems] = useState([])
+
     useEffect(() => {
         setActive(pathname.substring(1))
     }, [pathname])
+
+    // Add lcText field to be used in the navigation list
+    useEffect(() => {
+	setItems(navItems.map(item => ({ ...item, lcText: item.text.toLowerCase() })))
+    }, [])
+
+    const handleNavigation = (text) => {
+	setActive(text)
+	navigate(`/${text}`)
+    }
 
     if (!isSidebarOpen) return null
 
     return (
 	<aside className="layout__sidebar sidebar">
 	    <div className="sidebar__header">
-		<div className="sidebar__logo">
-		    ECOMVISION
-		</div>
+		<div className="sidebar__logo">ECOMVISION</div>
 
 		{isMobile && (
 		    <button className="icon-button">
@@ -69,116 +79,37 @@ const Sidebar = ({
 		)}
 	    </div>
 
-	    <div className="sidebar__menu">
-	    </div>
+	    <ul className="sidebar__menu">
+		{items && items.map(item => (
+		    <li
+			key={item.text}
+			className={`sidebar__menu-li ${active === item.lcText ? "active" : ""}`}
+			onClick={() => handleNavigation(item.lcText)}
+		    >
+			{!item.icon ? (
+			    <div className="sidebar__menu-header">{item.text}</div>
+			): (
+			    <div className="sidebar__menu-link" onClick={() => handleNavigation(item.lcText)}>
+				{item.icon}
+				<span>{item.text}</span>
+				<ChevronRightOutlined className="arrow" style={{ fontSize: 25 }} />
+			    </div>
+			)}
+		    </li>
+		))}
+	    </ul>
 
-	    <div className="sidebar__footer">
-		{user && (
-		    <>
-			<img className="sidebar__profile-img" src={profileImage} />
-			<div>
-			    <div className="sidebar__user-name">{user.name}</div>
-			    <div className="sidebar__user-occupation">{user.occupation}</div>
-			</div>
-			<SettingsOutlined style={{ fontSize: 25 }} />
-		    </>
-		)}
-	    </div>
+	    {user && (
+		<div className="sidebar__footer">
+		    <img className="sidebar__profile-img" src={profileImage} />
+		    <div>
+			<div className="sidebar__user-name">{user.name}</div>
+			<div className="sidebar__user-occupation">{user.occupation}</div>
+		    </div>
+		</div>
+	    )}
 	</aside>
     )
 }
-
-
-//    return (
-//        <Box component="nav">
-//            {isSidebarOpen && (
-//                <Drawer
-//                    open
-//                    onClose={() => setIsSidebarOpen(false)}
-//                    variant="persistent"
-//                    anchor="left"
-//                    sx={{
-//                        width: drawerWidth,
-//                        "& .MuiDrawer-paper": {
-//                            color: theme.palette.secondary[200],
-//                            backgroundColor: theme.palette.background.alt,
-//                            boxSizing: "border-box",
-//                            borderWidth: isMobile ? "2px" : 0,
-//                            width: drawerWidth
-//                        }
-//                    }}
-//                >
-//                    <Box width="100%">
-//                        <Box m="1.5rem 2rem 2rem 3rem">
-//                            <FlexBetween color={theme.palette.secondary.main}>
-//                                <Box display="flex" alignItems="center" gap="0.5rem">
-//                                    <Typography variant="h4" fontWeight="bold">
-//                                        ECOMVISION
-//                                    </Typography>
-//                                </Box>
-//
-//                                {isMobile && (
-//                                    <IconButton onClick={() => setIsSidebarOpen(false)}>
-//                                        <ChevronLeft />
-//                                    </IconButton>
-//                                )}
-//                            </FlexBetween>
-//                        </Box>
-//
-//                        <List>
-//                            {navItems.map(navItem => {
-//                                const text = navItem.text
-//                                const lcText = text.toLowerCase()
-//                                const icon = navItem.icon
-//
-//                                if (!icon) {
-//                                    return (
-//                                        <Typography sx={{ m: "2.25rem 0 1rem 3rem" }}>{text}</Typography>
-//                                    )
-//                                }
-//
-//                                return (
-//                                    <ListItem key={text} disablePadding>
-//                                        <ListItemButton
-//                                            onClick={() => {
-//                                                navigate(`/${lcText}`)
-//                                                setActive(lcText)
-//                                            }}
-//                                            sx={{
-//                                                backgroundColor: active === lcText
-//                                                    ? theme.palette.secondary[300]
-//                                                    : "transparent",
-//                                                color: active === lcText
-//                                                    ? theme.palette.primary[600]
-//                                                    : theme.palette.secondary[100]
-//                                            }}
-//                                        >
-//                                            <ListItemIcon
-//                                                sx={{
-//                                                    ml: "2rem",
-//                                                    color: active === lcText
-//                                                        ? theme.palette.primary[600]
-//                                                        : theme.palette.secondary[200]
-//                                                }}
-//                                            >
-//                                                {icon}
-//                                            </ListItemIcon>
-//
-//                                            <ListItemText primary={text} />
-//
-//                                            {active === lcText && (
-//                                                <ChevronRightOutlined sx={{ ml: "auto" }} />
-//                                            )}
-//                                        </ListItemButton>
-//                                    </ListItem>
-//                                )
-//                            })}
-//                        </List>
-//                    </Box>
-//                </Drawer>
-//            )}
-//        </Box>
-//    )
-//}
 
 export default Sidebar

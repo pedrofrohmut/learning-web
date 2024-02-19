@@ -40,34 +40,4 @@ const Layout = () => {
 
 }
 
-// {/*
-// <Sidebar
-//	className="sidebar"
-//	isMobile={isMobile}
-//	drawerWidth="250px"
-//	isSidebarOpen={isSidebarOpen}
-//	setIsSidebarOpen={setIsSidebarOpen}
-// />
-// <Navbar className="navbar" />
-// <Outlet className="outlet-container" />
-//  */}
-
-// return (
-//     <Box className="layout-container" display={isMobile ? "block" : "flex"} width="100%" height="100%">
-//         <Sidebar
-//             isMobile={isMobile}
-//             drawerWidth="250px"
-//             isSidebarOpen={isSidebarOpen}
-//             setIsSidebarOpen={setIsSidebarOpen}
-//         />
-//         <Box className="outlet-container" flexGrow={1}>
-//             <Navbar
-//                 isSidebarOpen={isSidebarOpen}
-//                 setIsSidebarOpen={setIsSidebarOpen}
-//             />
-//             <Outlet />
-//         </Box>
-//     </Box>
-// )
-
 export default Layout

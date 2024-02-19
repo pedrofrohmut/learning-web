@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
 
 :root {
+    --fw-light: 300;
     --fw-regular: 400;
     --fw-semibold: 600;
     --fw-bold: 700;
@@ -21,44 +23,44 @@
     --grey-950: #0A0A0A;
 
 
-    --primary-50: #F2F3FA;
-    --primary-100: #D4D8F0;
-    --primary-200: #98A1DA;
-    --primary-300: #5C6AC4;
-    --primary-400: #374498;
-    --primary-500: #21295C;
-    --primary-600: #1A2149;
-    --primary-700: #141836;
-    --primary-800: #0D1024;
-    --primary-900: #060811;
-    --primary-950: #030308;
+    --blue-50: #F2F3FA;
+    --blue-100: #D4D8F0;
+    --blue-200: #98A1DA;
+    --blue-300: #5C6AC4;
+    --blue-400: #374498;
+    --blue-500: #21295C;
+    --blue-600: #1A2149;
+    --blue-700: #141836;
+    --blue-800: #0D1024;
+    --blue-900: #060811;
+    --blue-950: #030308;
 
 
-    --secondary-50: #FFFAF0;
-    --secondary-100: #FFF6E0;
-    --secondary-200: #FFECC2;
-    --secondary-300: #FFE3A3;
-    --secondary-400: #FFDA85;
-    --secondary-500: #FFD166;
-    --secondary-600: #FFBA1A;
-    --secondary-700: #CC8F00;
-    --secondary-800: #805A00;
-    --secondary-900: #332400;
-    --secondary-950: #0D0900;
+    --yellow-50: #FFFAF0;
+    --yellow-100: #FFF6E0;
+    --yellow-200: #FFECC2;
+    --yellow-300: #FFE3A3;
+    --yellow-400: #FFDA85;
+    --yellow-500: #FFD166;
+    --yellow-600: #FFBA1A;
+    --yellow-700: #CC8F00;
+    --yellow-800: #805A00;
+    --yellow-900: #332400;
+    --yellow-950: #0D0900;
 
-    /* Palette Dark Theme */
-    --dark-primary: var(--primary-400);
-    --dark-secondary: var(--secondary-300);
-    --dark-neutral: var(--grey-500);
-    --dark-bg: var(--primary-500);
-    --dark-text: var(--secondary-300);
+    /* /\* Palette Dark Theme *\/ */
+    /* --dark-primary: var(--primary-400); */
+    /* --dark-secondary: var(--secondary-300); */
+    /* --dark-neutral: var(--grey-500); */
+    /* --dark-bg: var(--primary-500); */
+    /* --dark-text: var(--secondary-300); */
 
-    /* Palette Light Theme */
-    --light-primary: var(--grey-50);
-    --light-secondary: var(--secondary-600);
-    --light-neutral: var(--grey-500);
-    --light-bg: var(--grey-50);
-    --light-text: var(--primary-400);
+    /* /\* Palette Light Theme *\/ */
+    /* --light-primary: var(--grey-50); */
+    /* --light-secondary: var(--secondary-600); */
+    /* --light-neutral: var(--grey-500); */
+    /* --light-bg: var(--grey-50); */
+    /* --light-text: var(--primary-400); */
 }
 
 *, *::before, *::after {
@@ -69,10 +71,8 @@
 }
 
 html, body, #root, .app, .layout {
-    /* height: 100%; */
-    /* width: 100%; */
-    min-width: 100vw;
-    min-height: 100vh;
+    min-width: 100svw;
+    min-height: 100svh;
 }
 
 body {
@@ -81,10 +81,6 @@ body {
 
 /* LIGHT */
 .app {
-    --bg-default: white;
-    --bg-alt: var(--grey-50);
-    --text-color: var(--light-text);
-
     --neutral-100: var(--grey-900);
     --neutral-200: var(--grey-800);
     --neutral-300: var(--grey-700);
@@ -94,6 +90,38 @@ body {
     --neutral-700: var(--grey-300);
     --neutral-800: var(--grey-200);
     --neutral-900: var(--grey-100);
+    --neutral-950: var(--grey-50);
+
+    --primary-100: var(--blue-900);
+    --primary-200: var(--blue-800);
+    --primary-300: var(--blue-700);
+    --primary-400: var(--blue-600);
+    --primary-500: var(--blue-500);
+    --primary-600: var(--blue-400);
+    --primary-700: var(--blue-300);
+    --primary-800: var(--blue-200);
+    --primary-900: var(--blue-100);
+
+    --secondary-100: var(--yellow-900);
+    --secondary-200: var(--yellow-800);
+    --secondary-300: var(--yellow-700);
+    --secondary-400: var(--yellow-600);
+    --secondary-500: var(--yellow-500);
+    --secondary-600: var(--yellow-400);
+    --secondary-700: var(--yellow-300);
+    --secondary-800: var(--yellow-200);
+    --secondary-900: var(--yellow-100);
+
+    /* --bg-default: var(--primary-700); */
+    /* --bg-alt: var(--primary-600); */
+    /* --text-color: var(--secondary-300); */
+
+    --bg-default: var(--neutral-900);
+    --bg-alt: var(--neutral-950);
+    --text-color: var(--primary-400);
+
+    --bg-active: var(--secondary-600);
+    --text-active: var(--primary-300);
 
     background-color: var(--bg-default);
     color: var(--text-color);
@@ -101,10 +129,6 @@ body {
 
 /* DARK */
 .app.dark {
-    --bg-default: var(--primary-700);
-    --bg-alt: var(--primary-600);
-    --text-color: var(--dark-text);
-
     --neutral-100: var(--grey-100);
     --neutral-200: var(--grey-200);
     --neutral-300: var(--grey-300);
@@ -114,6 +138,33 @@ body {
     --neutral-700: var(--grey-700);
     --neutral-800: var(--grey-800);
     --neutral-900: var(--grey-900);
+
+    --primary-100: var(--blue-100);
+    --primary-200: var(--blue-200);
+    --primary-300: var(--blue-300);
+    --primary-400: var(--blue-400);
+    --primary-500: var(--blue-500);
+    --primary-600: var(--blue-600);
+    --primary-700: var(--blue-700);
+    --primary-800: var(--blue-800);
+    --primary-900: var(--blue-900);
+
+    --secondary-100: var(--yellow-100);
+    --secondary-200: var(--yellow-200);
+    --secondary-300: var(--yellow-300);
+    --secondary-400: var(--yellow-400);
+    --secondary-500: var(--yellow-500);
+    --secondary-600: var(--yellow-600);
+    --secondary-700: var(--yellow-700);
+    --secondary-800: var(--yellow-800);
+    --secondary-900: var(--yellow-900);
+
+    --bg-default: var(--primary-700);
+    --bg-alt: var(--primary-600);
+    --bg-active: var(--secondary-300);
+
+    --text-color: var(--secondary-300);
+    --text-active: var(--primary-600);
 
     background-color: var(--bg-default);
     color: var(--text-color);
@@ -196,30 +247,90 @@ body {
 }
 
 .sidebar__logo {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: var(--fw-bold);
     text-align: center;
     padding-block: 1em;
 }
 
-.sidebar__menu {
+ul.sidebar__menu {
     flex: 1;
+    list-style: none;
+    font-weight: var(--fw-regular);
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+}
+
+ul.sidebar__menu li {
+    padding: 0.8em 1em;
+}
+
+ul.sidebar__menu li.active {
+    background-color: var(--bg-active);
+    color: var(--text-active);
+    opacity: 0.87;
+}
+
+.sidebar__menu-header {
+    margin-top: 0.3em;
+    margin-bottom: 0.6em;
+    font-size: 0.8rem;
+    position: relative;
+}
+
+.sidebar__menu-header::after {
+    content: "";
+    inset: calc(100% + 0.9em) 0 0 0;
+    position: absolute;
+    background-color: var(--text-color);
+    opacity: 0.8;
+    height: 1px;
+    width: 100%;
+}
+
+.sidebar__menu-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    padding-left: 1.8em;
+}
+
+.sidebar__menu-li:first-child .sidebar__menu-link {
+    padding-left: 0;
+}
+
+.sidebar__menu span {
+    flex: 1;
+}
+
+.sidebar__menu-li svg {
+    font-size: 22px;
+}
+
+.sidebar__menu-li svg:last-child {
+    color: transparent;
+}
+
+.sidebar__menu-li.active svg:last-child {
+    color: var(--text-active);
 }
 
 .sidebar__footer {
     border-top: 2px solid var(--neutral-500);
-    padding: 2em 1.2em;
-    width: 100%;
+    padding: 2em 2.2em;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .sidebar__profile-img {
-    width: 40px;
-    height: 40px;
-    border-radius: 100vmax;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid var(--neutral-800);
 }
 
 .sidebar__user-name {
