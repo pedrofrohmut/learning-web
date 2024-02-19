@@ -69,8 +69,10 @@
 }
 
 html, body, #root, .app, .layout {
-    height: 100%;
-    width: 100%;
+    /* height: 100%; */
+    /* width: 100%; */
+    min-width: 100vw;
+    min-height: 100vh;
 }
 
 body {
@@ -161,15 +163,9 @@ body {
     padding: 1em 2em;
 }
 
-.navbar__left {
-    display: flex;
-    gap: 2em;
-    justify-content: space-between;
-}
-
 .navbar__search {
     display: flex;
-    gap: 3rem;
+    gap: 0.1rem;
     border-radius: 9px;
     background-color: var(--bg-alt);
     padding: 0.1rem 1.5rem;
@@ -181,6 +177,7 @@ body {
     color: var(--text-color);
     padding: 0.5em 1em;
     font-weight: var(--fw-regular);
+    width: clamp(120px, 25vw, 280px);
 }
 
 .navbar__right {
@@ -192,10 +189,17 @@ body {
 
 .sidebar {
     background-color: var(--bg-alt);
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     min-width: 250px;
     display: flex;
     flex-direction: column;
+}
+
+.sidebar__logo {
+    font-size: 1.25rem;
+    font-weight: var(--fw-bold);
+    text-align: center;
+    padding-block: 1em;
 }
 
 .sidebar__menu {
@@ -220,9 +224,13 @@ body {
 
 .sidebar__user-name {
     font-weight: var(--fw-bold);
-    /* color: white; */
+    margin-block-end: 0.4em;
 }
 
-.sidebar__user-occupation {
-    /* color: white; */
+.sidebar__user-occupation {}
+
+@media (max-width: 800px) {
+    .sidebar {
+	border: 2px solid var(--bg-alt);
+    }
 }

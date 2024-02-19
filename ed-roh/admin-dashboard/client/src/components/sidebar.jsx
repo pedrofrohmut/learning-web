@@ -57,8 +57,19 @@ const Sidebar = ({
 
     return (
 	<aside className="layout__sidebar sidebar">
+	    <div className="sidebar__header">
+		<div className="sidebar__logo">
+		    ECOMVISION
+		</div>
+
+		{isMobile && (
+		    <button className="icon-button">
+			<ChevronLeft style={{ fontSize: 25 }} />
+		    </button>
+		)}
+	    </div>
+
 	    <div className="sidebar__menu">
-		<div>Menu</div>
 	    </div>
 
 	    <div className="sidebar__footer">
