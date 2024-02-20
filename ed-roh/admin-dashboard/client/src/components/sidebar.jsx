@@ -1,4 +1,3 @@
-import { Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from "@mui/material"
 import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import {
@@ -37,18 +36,10 @@ const navItems = [
     { text: "Performance", icon: <TrendingUpOutlined /> },
 ]
 
-const Sidebar = ({
-    isMobile,
-    drawerWidth,
-    isSidebarOpen,
-    setIsSidebarOpen,
-    user
-}) => {
+const Sidebar = ({ handleToggleSidebar, user }) => {
     const { pathname } = useLocation()
-    const [active, setActive] = useState()
     const navigate = useNavigate()
-    const theme = useTheme()
-
+    const [active, setActive] = useState()
     const [items, setItems] = useState([])
 
     useEffect(() => {
@@ -65,18 +56,14 @@ const Sidebar = ({
 	navigate(`/${text}`)
     }
 
-    if (!isSidebarOpen) return null
-
     return (
 	<aside className="layout__sidebar sidebar">
 	    <div className="sidebar__header">
 		<div className="sidebar__logo">ECOMVISION</div>
 
-		{isMobile && (
-		    <button className="icon-button">
-			<ChevronLeft style={{ fontSize: 25 }} />
-		    </button>
-		)}
+		<button className="icon-button" onClick={handleToggleSidebar}>
+		    <ChevronLeft style={{ fontSize: 25 }} />
+		</button>
 	    </div>
 
 	    <ul className="sidebar__menu">

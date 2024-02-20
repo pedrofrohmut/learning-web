@@ -1,17 +1,27 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Outlet } from "react-router-dom"
 
 import { useSelector } from "react-redux"
 import { useGetUserQuery } from "../redux/api"
 
-import { Box, useMediaQuery } from "@mui/material"
-
 import Navbar from "../components/navbar"
 import Sidebar from "../components/sidebar"
 
 const Layout = () => {
-    const isMobile = useMediaQuery("(max-width: 44em)")
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+    const isSmallScreen = () => window.innerWidth < 1024
+    const [isSidebarOpen, setIsSidebarOpen] = useState(! isSmallScreen())
+
+    const handleToggleSidebar = () => {
+	setIsSidebarOpen(!isSidebarOpen)
+    }
+
+    useEffect(() => {
+	const handleResize = () => setIsSidebarOpen(! isSmallScreen())
+
+	window.addEventListener("resize", handleResize)
+
+	return () => window.removeEventListener("resize", handleResize)
+    }, [])
 
     const userId = useSelector(state => state.global.userId)
     const { data: user } = useGetUserQuery(userId)
@@ -19,18 +29,15 @@ const Layout = () => {
     return (
 	<div className="layout">
 	    <Navbar
-		user={user}
-		isSidebarOpen={isSidebarOpen}
-		setIsSidebarOpen={setIsSidebarOpen}
+		handleToggleSidebar={handleToggleSidebar}
 	    />
 
-	    <Sidebar
-		user={user}
-		isMobile={isMobile}
-		drawerWidth="250px"
-		isSidebarOpen={isSidebarOpen}
-		setIsSidebarOpen={setIsSidebarOpen}
-	    />
+	    {isSidebarOpen && (
+		<Sidebar
+		    user={user}
+		    handleToggleSidebar={handleToggleSidebar}
+		/>
+	    )}
 
 	    <main className="layout__main">
 		<Outlet />

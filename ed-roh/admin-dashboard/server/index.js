@@ -12,8 +12,10 @@ import managementRoutes from "./routes/management-routes.js"
 import salesRoutes from "./routes/sales-routes.js"
 
 // Data
-import userModel from "./models/user.js"
-import { dataUser } from "./data.js"
+import userModel from "./models/user-model.js"
+import productModel from "./models/product-model.js"
+import productStatModel from "./models/product-stat-model.js"
+import { dataUser, dataProduct, dataProductStat } from "./data.js"
 
 dotenv.config()
 
@@ -48,7 +50,9 @@ const run = async () => {
         app.listen(PORT, console.log("Server listening at http://localhost:", PORT))
 
         // Only add data one time
-        //userModel.insertMany(dataUser)
+        // userModel.insertMany(dataUser)
+	// productModel.insertMany(dataProduct)
+	// productStatModel.insertMany(dataProductStat)
     } catch (err) {
         console.error(err)
     } finally {
