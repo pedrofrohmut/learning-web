@@ -3,16 +3,15 @@ import productStatModel from "../models/product-stat-model.js"
 
 export const getProducts = async (_req, res) => {
     try {
-	const products = await productModel.find({}).exec()
+	const products = await productModel.find({})
 
 	const productsWithStats = await Promise.all(
 	    products.map(async product => {
-		const productStats = await productStatModel.find({ productId: product._id })
-		return {
-		    ...product._doc,
-		    stats: productStats
-		}
+		const stats = await productStatModel.find({ productId: product._id })
+		product._doc.stats = stats
+		return product._doc
 	    })
+
 	)
 
 	return res.status(200).json(productsWithStats)
