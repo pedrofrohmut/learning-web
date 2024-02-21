@@ -405,6 +405,7 @@ ul.sidebar__menu li.active {
     margin-top: 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: fit-content;
     gap: 1rem;
 }
 
@@ -429,11 +430,14 @@ ul.sidebar__menu li.active {
 /* Product */
 
 .product__card {
+    color: var(--neutral-200);
+    font-size: var(--fs-small);
+}
+
+.product__card-container {
     padding: 2em;
     max-width: 24rem;
     background-color: var(--bg-alt);
-    color: var(--neutral-200);
-    font-size: var(--fs-default);
 }
 
 .product__card *:not(:first-child) {

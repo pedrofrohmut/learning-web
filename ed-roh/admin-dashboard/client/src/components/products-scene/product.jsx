@@ -9,29 +9,31 @@ const Product = ({ product }) => {
 
     return (
 	<div className="product__card">
-	    <div className="product__category">{category}</div>
-	    <div className="product__name">{name}</div>
-	    <div className="product__price">${price}</div>
-	    <div className="product__rating">{rating}</div>
-	    <div className="product__description">{description}</div>
+	    <div className="product__card-container">
+		<div className="product__category">{category}</div>
+		<div className="product__name">{name}</div>
+		<div className="product__price">${price}</div>
+		<div className="product__rating">{rating}</div>
+		<div className="product__description">{description}</div>
 
-	    <button className="product__button"
-		    onClick={() => setIsExpanded(!isExpanded)}>
-		See More
-	    </button>
+		<button className="product__button"
+			onClick={() => setIsExpanded(!isExpanded)}>
+		    See More
+		</button>
 
-	    {isExpanded && (
-		<div>
-		    <div className="product__id">id: {id}</div>
-		    <div className="product__supply">Supply Left: {supply}</div>
-		    <div className="product__sales">
-			Yearly Sales This Year: {stats.yearlySalesTotal}
+		{isExpanded && (
+		    <div>
+			<div className="product__id">id: {id}</div>
+			<div className="product__supply">Supply Left: {supply}</div>
+			<div className="product__sales">
+			    Yearly Sales This Year: {stats[0].yearlySalesTotal}
+			</div>
+			<div className="product__sold">
+			    Yearly Units Sold This Year: {stats[0].yearlyTotalSoldUnits}
+			</div>
 		    </div>
-		    <div className="product__sold">
-			Yearly Units Sold This Year: {stats.yearlyTotalSoldUnits}
-		    </div>
-		</div>
-	    )}
+		)}
+	    </div>
 	</div>
     )
 }
