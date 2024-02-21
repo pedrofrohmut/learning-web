@@ -5,8 +5,6 @@ import Product from "../components/products-scene/product"
 const ProductsScene = () => {
     const { data: products, isLoading } = useGetProductsQuery()
 
-    console.log(products)
-
     return (
 	<div className="product-scene__container">
 	    <SceneTitle title="Products" subtitle="See your list of products" />

@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-// TODO: make rating component
+import Rating from "./rating"
 
 const Product = ({ product }) => {
     const { category, name, price, rating, description, _id: id, supply, stats } = product
@@ -13,9 +13,8 @@ const Product = ({ product }) => {
 		<div className="product__category">{category}</div>
 		<div className="product__name">{name}</div>
 		<div className="product__price">${price}</div>
-		<div className="product__rating">{rating}</div>
+		<Rating rating={rating} />
 		<div className="product__description">{description}</div>
-
 		<button className="product__button"
 			onClick={() => setIsExpanded(!isExpanded)}>
 		    See More
