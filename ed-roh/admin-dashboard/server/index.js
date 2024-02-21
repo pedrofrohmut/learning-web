@@ -11,12 +11,7 @@ import generalRoutes from "./routes/general-routes.js"
 import managementRoutes from "./routes/management-routes.js"
 import salesRoutes from "./routes/sales-routes.js"
 
-// Data
-import userModel from "./models/user-model.js"
-import productModel from "./models/product-model.js"
-import productStatModel from "./models/product-stat-model.js"
-import { dataUser, dataProduct, dataProductStat } from "./data.js"
-
+// Setup env variables
 dotenv.config()
 
 const app = express()
@@ -37,7 +32,7 @@ app.use("/sales", salesRoutes)
 
 const PORT = process.env.PORT || 9000
 
-const run = async () => {
+const main = async () => {
     let conn;
     try {
         // Keep is here in case this options are ever necessary
@@ -48,19 +43,9 @@ const run = async () => {
         conn = await mongoose.connect(process.env.MONGO_URL)
         console.log("Connected to MongoDB")
         app.listen(PORT, console.log("Server listening at http://localhost:", PORT))
-
-        // Only add data one time
-        // userModel.insertMany(dataUser)
-	// productModel.insertMany(dataProduct)
-	// productStatModel.insertMany(dataProductStat)
     } catch (err) {
         console.error(err)
-    } finally {
-        //conn.close()
     }
 }
 
-run().then(() => {
-    // Close Connection
-    console.log("Mongoose Connection Closed")
-})
+main()
