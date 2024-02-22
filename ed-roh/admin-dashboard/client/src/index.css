@@ -4,17 +4,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
 
 :root {
-    --fw-light:    300;
-    --fw-regular:  400;
-    --fw-semibold: 600;
-    --fw-bold:     700;
-
-    --fs-extra-small: 0.70rem;
-    --fs-small:       0.85rem;
-    --fs-default:     1rem;
-    --fs-large:       1.15rem;
-    --fs-extra-large: 1.3rem;
-
     --grey-10: #f6f6f6;
     --grey-50: #F0F0F0;
     --grey-100: #E0E0E0;
@@ -53,6 +42,19 @@
     --yellow-800: #805A00;
     --yellow-900: #332400;
     --yellow-950: #0D0900;
+
+    --fw-light:    300;
+    --fw-regular:  400;
+    --fw-semibold: 600;
+    --fw-bold:     700;
+
+    --fs-extra-small: 0.70rem;
+    --fs-small:       0.85rem;
+    --fs-default:     1rem;
+    --fs-large:       1.15rem;
+    --fs-extra-large: 1.3rem;
+
+    --scene-padding: 1.5rem 2.5rem;
 }
 
 @media (max-width: 768px) {
@@ -76,8 +78,6 @@
 html, body, #root, .app, .layout {
     width: 100%;
     height: 100%;
-    /* min-width: 100vw; */
-    /* min-height: 100vh; */
 }
 
 body {
@@ -399,7 +399,8 @@ ul.sidebar__menu li.active {
 /* Products Scene */
 
 .product-scene__container {
-    padding: 1.5rem 2.5rem;
+    /* padding: 1.5rem 2.5rem; */
+    padding: var(--scene-padding);
 }
 
 .product-scene__products-container {
@@ -479,7 +480,7 @@ ul.sidebar__menu li.active {
 /* Customers Scene */
 
 .customers-scene__container {
-    padding: 1.5rem 2.5rem;
+    padding: var(--scene-padding);
 }
 
 .customers__filters {
@@ -489,6 +490,10 @@ ul.sidebar__menu li.active {
     padding: 1.3em 0;
 }
 
+.customers__filters label {
+    cursor: pointer;
+}
+
 .customers__filters input[type="checkbox"] {
     margin-right: 0.1em;
 }
@@ -496,12 +501,11 @@ ul.sidebar__menu li.active {
 .customers__table-container {
     overflow-x: auto;
     padding: 2rem 0;
+    width: fit-content;
 }
 
 .customers__table {
     background-color: var(--bg-alt);
-    max-width: 100%;
-    margin-inline: auto;
     border-collapse: collapse;
 }
 
@@ -510,42 +514,35 @@ ul.sidebar__menu li.active {
     border-bottom: 2px solid var(--neutral-200);
 }
 
-/* .customers__table tbody tr, */
-/* .customers__table thead tr { */
-/*     display: flex; */
-/* } */
-
-/* .customers__table .th-id         { flex: 1;   } */
-/* .customers__table .th-name       { flex: 0.5; } */
-/* .customers__table .th-email      { flex: 1;   } */
-/* .customers__table .th-phone      { flex: 0.5; } */
-/* .customers__table .th-country    { flex: 0.4; } */
-/* .customers__table .th-occupation { flex: 1;   } */
-/* .customers__table .th-role       { flex: 0.5; } */
-
-/* .customers__table th:nth-child(1) { flex: 1;   } */
-/* .customers__table th:nth-child(2) { flex: 0.5; } */
-/* .customers__table th:nth-child(3) { flex: 1;   } */
-/* .customers__table th:nth-child(4) { flex: 0.5; } */
-/* .customers__table th:nth-child(5) { flex: 0.4; } */
-/* .customers__table th:nth-child(6) { flex: 1;   } */
-/* .customers__table th:nth-child(7) { flex: 0.5; } */
-
-/* .customers__table td:nth-child(1) { flex: 1;   } */
-/* .customers__table td:nth-child(2) { flex: 0.5; } */
-/* .customers__table td:nth-child(3) { flex: 1;   } */
-/* .customers__table td:nth-child(4) { flex: 0.5; } */
-/* .customers__table td:nth-child(5) { flex: 0.4; } */
-/* .customers__table td:nth-child(6) { flex: 1;   } */
-/* .customers__table td:nth-child(7) { flex: 0.5; } */
-
 .customers__table th,
 .customers__table td {
-    /* border: 1px solid var(--neutral-200); */
     padding: 0.7em 0.7em;
     white-space: nowrap;
 }
 
 .customers__table tr:nth-child(even) {
+    background-color: var(--bg-hover);
+}
+
+.customers__buttons-container {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.customers__buttons-container button {
+    width: 120px;
+    padding: 0.2em;
+    font-size: var(--fs-small);
+    background-color: var(--bg-alt);
+    color: var(--neutral-200);
+    border: 1px solid var(--neutral-500);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.customers__buttons-container button:disabled {
+    color: var(--neutral-600);
     background-color: var(--bg-hover);
 }

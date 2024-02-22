@@ -1,9 +1,7 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import SceneTitle from "../components/scene-title"
 import { useGetCustomersQuery } from "../redux/api"
-
-// Phone number string: /^(\d{3})(\d{3})(\d{4})$/ => (\1) \2-\3
-const phoneFmt = (phone) => phone.replace(/^(\d{3})(\d{3})(\d{4})$/, "($1) $2 - $3")
+import { phoneFmt } from "../utils"
 
 const CustomersScene = () => {
     const { data: customers, isLoading } = useGetCustomersQuery()
@@ -15,6 +13,21 @@ const CustomersScene = () => {
     const [showCountry, setShowCountry] = useState(true)
     const [showOccupation, setShowOccupation] = useState(true)
     const [showRole, setShowRole] = useState(false)
+
+    const [pageN, setPageN] = useState(0)
+    const [pageSize, setPageSize] = useState(10)
+    const [customersSlice, setCustomersSlice] = useState([])
+
+    useEffect(() => {
+	const pageStart = pageN * pageSize
+	const pageEnd = (pageN * pageSize) + pageSize
+	if (!isLoading && customers) {
+	    setCustomersSlice(customers.slice(pageStart, pageEnd))
+	}
+    }, [isLoading, customers, pageN])
+
+    const hasPrevious = customers && pageN > 0
+    const hasNext = customers && (pageN + 1) * pageSize < customers.length
 
     return (
 	<div className="customers-scene__container">
@@ -67,32 +80,42 @@ const CustomersScene = () => {
 
 	    <div className="customers__table-container">
 		{!isLoading && customers && (
-		    <table className="customers__table">
-			<thead>
-			    <tr>
-				{showId && <th className="th-id">ID</th>}
-				{showName && <th className="th-name">Name</th>}
-				{showEmail && <th className="th-email">E-mail</th>}
-				{showPhoneNumber && <th className="th-phone">Phone Number</th>}
-				{showCountry && <th className="th-country">Country</th>}
-				{showOccupation && <th className="th-occupation">Occupation</th>}
-				{showRole && <th className="th-role">Role</th>}
-			    </tr>
-			</thead>
-			<tbody>
-			    {customers.map(customer => (
-				<tr key={customer._id}>
-				    {showId && <td>{customer._id}</td>}
-				    {showName && <td>{customer.name}</td>}
-				    {showEmail && <td>{customer.email}</td>}
-				    {showPhoneNumber && <td>{phoneFmt(customer.phoneNumber)}</td>}
-				    {showCountry && <td>{customer.country}</td>}
-				    {showOccupation && <td>{customer.occupation}</td>}
-				    {showRole && <td>{customer.role}</td>}
+		    <>
+			<table className="customers__table">
+			    <thead>
+				<tr>
+				    {showId          && <th className="th-id">ID</th>}
+				    {showName        && <th className="th-name">Name</th>}
+				    {showEmail       && <th className="th-email">E-mail</th>}
+				    {showPhoneNumber && <th className="th-phone">Phone Number</th>}
+				    {showCountry     && <th className="th-country">Country</th>}
+				    {showOccupation  && <th className="th-occupation">Occupation</th>}
+				    {showRole        && <th className="th-role">Role</th>}
 				</tr>
-			    ))}
-			</tbody>
-		    </table>
+			    </thead>
+			    <tbody>
+				{customersSlice.map(customer => (
+				    <tr key={customer._id}>
+					{showId          && <td>{customer._id}</td>}
+					{showName        && <td>{customer.name}</td>}
+					{showEmail       && <td>{customer.email}</td>}
+					{showPhoneNumber && <td>{phoneFmt(customer.phoneNumber)}</td>}
+					{showCountry     && <td>{customer.country}</td>}
+					{showOccupation  && <td>{customer.occupation}</td>}
+					{showRole        && <td>{customer.role}</td>}
+				    </tr>
+				))}
+			    </tbody>
+			</table>
+			<div className="customers__buttons-container">
+			    <button onClick={() => setPageN(pageN - 1)} disabled={!hasPrevious}>
+				Previous
+			    </button>
+			    <button onClick={() => setPageN(pageN + 1)} disabled={!hasNext}>
+				Next
+			    </button>
+			</div>
+		    </>
 		)}
 	    </div>
 	</div>
