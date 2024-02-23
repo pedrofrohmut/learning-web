@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react"
-import SceneTitle from "../components/scene-title"
+import SceneTitle from "../components/shared/scene-title"
 import { useGetCustomersQuery } from "../redux/api"
 import { phoneFmt } from "../utils"
+import SceneContainer from "../components/shared/scene-container"
+import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material"
 
 const CustomersScene = () => {
     const { data: customers, isLoading } = useGetCustomersQuery()
@@ -14,26 +16,26 @@ const CustomersScene = () => {
     const [showOccupation, setShowOccupation] = useState(true)
     const [showRole, setShowRole] = useState(false)
 
-    const [pageN, setPageN] = useState(0)
+    const [pageNumber, setPageNumber] = useState(0)
     const [pageSize, setPageSize] = useState(10)
     const [customersSlice, setCustomersSlice] = useState([])
 
     useEffect(() => {
-	const pageStart = pageN * pageSize
-	const pageEnd = (pageN * pageSize) + pageSize
+	const pageStart = pageNumber * pageSize
+	const pageEnd = (pageNumber * pageSize) + pageSize
 	if (!isLoading && customers) {
 	    setCustomersSlice(customers.slice(pageStart, pageEnd))
 	}
-    }, [isLoading, customers, pageN])
+    }, [isLoading, customers, pageNumber])
 
-    const hasPrevious = customers && pageN > 0
-    const hasNext = customers && (pageN + 1) * pageSize < customers.length
+    const hasPrevious = customers && pageNumber > 0
+    const hasNext = customers && (pageNumber + 1) * pageSize < customers.length
 
     return (
-	<div className="customers-scene__container">
+        <SceneContainer className="customers-scene__container">
 	    <SceneTitle title="Customers" subtitle="List of customers" />
 
-	    <ul className="customers__filters">
+	    <ul className="customers__toggle-list">
 		<li>
 		    <label htmlFor="id-ch">
 			<input type="checkbox" onChange={() => setShowId(!showId)}
@@ -108,17 +110,19 @@ const CustomersScene = () => {
 			    </tbody>
 			</table>
 			<div className="customers__buttons-container">
-			    <button onClick={() => setPageN(pageN - 1)} disabled={!hasPrevious}>
-				Previous
+			    <button onClick={() => setPageNumber(pageNumber - 1)} disabled={!hasPrevious}>
+				<ArrowBackIos />
+				<span>Previous</span>
 			    </button>
-			    <button onClick={() => setPageN(pageN + 1)} disabled={!hasNext}>
-				Next
+			    <button onClick={() => setPageNumber(pageNumber + 1)} disabled={!hasNext}>
+				<span>Next</span>
+				<ArrowForwardIos />
 			    </button>
 			</div>
 		    </>
 		)}
 	    </div>
-	</div>
+        </SceneContainer>
     )
 }
 

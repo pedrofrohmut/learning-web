@@ -4,8 +4,8 @@ import { Outlet } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { useGetUserQuery } from "../redux/api"
 
-import Navbar from "../components/navbar"
-import Sidebar from "../components/sidebar"
+import Navbar from "../components/layout/navbar"
+import Sidebar from "../components/layout/sidebar"
 
 const Layout = () => {
     const isSmallScreen = () => window.innerWidth < 1024

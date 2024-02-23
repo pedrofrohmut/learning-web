@@ -10,6 +10,8 @@ const subtitleCss = css`
   color: var(--text-alt);
   font-weight: var(--fw-light);
   font-size: var(--fs-regular);
+  padding-left: 0.2em;
+  margin-bottom: 1.25rem;
 `
 
 const SceneTitle = ({ title, subtitle }) => (

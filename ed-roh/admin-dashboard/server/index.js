@@ -41,7 +41,7 @@ const main = async () => {
         //     useUnifiedTopology: true
         // })
         conn = await mongoose.connect(process.env.MONGO_URL)
-        console.log("Connected to MongoDB")
+        console.log("Connected to MongoDB: http://localhost:27017")
         app.listen(PORT, console.log("Server listening at http://localhost:", PORT))
     } catch (err) {
         console.error(err)

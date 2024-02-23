@@ -5,7 +5,7 @@ import { DarkModeOutlined,
          Search,
          SettingsOutlined } from "@mui/icons-material"
 
-import { toggleDarkMode } from "../redux/global-slice"
+import { toggleDarkMode } from "../../redux/global-slice"
 
 const Navbar = ({ handleToggleSidebar }) => {
     const dispatch = useDispatch()

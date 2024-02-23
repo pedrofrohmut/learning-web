@@ -1,12 +1,13 @@
 import { useGetProductsQuery } from "../redux/api"
-import SceneTitle from "../components/scene-title"
+import SceneTitle from "../components/shared/scene-title"
 import Product from "../components/products-scene/product"
+import SceneContainer from "../components/shared/scene-container"
 
 const ProductsScene = () => {
     const { data: products, isLoading } = useGetProductsQuery()
 
     return (
-	<div className="product-scene__container">
+	<SceneContainer className="product-scene__container">
 	    <SceneTitle title="Products" subtitle="See your list of products" />
 
 	    {!isLoading && products && (
@@ -16,7 +17,7 @@ const ProductsScene = () => {
 		    ))}
 		</div>
 	    )}
-	</div>
+	</SceneContainer>
     )
 }
 

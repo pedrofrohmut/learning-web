@@ -17,7 +17,7 @@ import {
     TrendingUpOutlined
 } from "@mui/icons-material"
 
-import profileImage from "../../assets/profile-small.jpeg"
+import profileImage from "../../../assets/profile-small.jpeg"
 
 const navItems = [
     { text: "Dashboard", icon: <HomeOutlined /> },
