@@ -1,0 +1,14 @@
+    Year: 2018-2020
+    Position: Sales Representative
+    Company Name: Elite Solutions Inc.
+    Job Description: Managed a portfolio of clients in the tech industry, building strong relationships and providing tailored solutions to meet their needs. Consistently exceeded sales targets through proactive prospecting, negotiation, and closing deals. Collaborated with cross-functional teams to ensure seamless execution of client projects and maximize customer satisfaction.
+
+    Year: 2016-2017
+    Position: Account Executive
+    Company Name: Swift Marketing Solutions
+    Job Description: Spearheaded B2B sales initiatives, targeting small and medium-sized businesses across various sectors. Developed and implemented sales strategies to drive revenue growth and expand market share. Conducted product demonstrations and presentations to educate clients on the value proposition of our services. Achieved recognition for outstanding sales performance and consistently ranked as a top performer within the sales team.
+
+    Year: 2014-2015
+    Position: Sales Associate
+    Company Name: Horizon Enterprises
+    Job Description: Provided exceptional customer service and support to clients in the retail sector. Utilized consultative selling techniques to identify customer needs and recommend appropriate products and services. Met and exceeded sales targets through effective upselling and cross-selling strategies. Collaborated with team members to ensure a positive shopping experience for customers and maintained a high level of product knowledge to address inquiries effectively.
