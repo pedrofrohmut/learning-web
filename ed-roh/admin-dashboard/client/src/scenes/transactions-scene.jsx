@@ -46,6 +46,10 @@ const TransactionsScene = () => {
     // ** Extra/Optional order by date asc/desc would be good (radio asc/desc/none)
     // make select, input_text and radio into a form (inline?) with button 'filter'
 
+    // Brain Storm #4
+    // 1. Sort by: date asc/des or cost asc/des
+    // 2. Filter by: userId or cost below of or cost above of
+
     if (isLoading || !data) return null
 
     const transactions = data.data
@@ -57,10 +61,10 @@ const TransactionsScene = () => {
 	<SceneContainer className="transactions__scene-container">
 	    <SceneTitle title="Transactions" subtitle="Entire list of transactions" />
 
-	    <div className="transactions__table-container">
+	    <div className="table-container">
 		{!isLoading && transactions && (
 		    <>
-			<table className="transactions__table">
+			<table className="table">
 			    <thead>
 				<tr>
 				    <th>Id</th>
@@ -81,7 +85,7 @@ const TransactionsScene = () => {
 				))}
 			    </tbody>
 			</table>
-			<div className="customers__buttons-container">
+			<div className="table-buttons">
 			    <button onClick={() => setPageNumber(pageNumber - 1)} disabled={!hasPrevious}>
 				<ArrowBackIos />
 				<span>Previous</span>

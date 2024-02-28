@@ -35,7 +35,7 @@ const CustomersScene = () => {
         <SceneContainer className="customers-scene__container">
 	    <SceneTitle title="Customers" subtitle="List of customers" />
 
-	    <ul className="customers__toggle-list">
+	    <ul className="table-toggle-list">
 		<li>
 		    <label htmlFor="id-ch">
 			<input type="checkbox" onChange={() => setShowId(!showId)}
@@ -80,10 +80,10 @@ const CustomersScene = () => {
 		</li>
 	    </ul>
 
-	    <div className="customers__table-container">
+	    <div className="table-container">
 		{!isLoading && customers && (
 		    <>
-			<table className="customers__table">
+			<table className="table">
 			    <thead>
 				<tr>
 				    {showId          && <th className="th-id">ID</th>}
@@ -109,7 +109,7 @@ const CustomersScene = () => {
 				))}
 			    </tbody>
 			</table>
-			<div className="customers__buttons-container">
+			<div className="table-buttons">
 			    <button onClick={() => setPageNumber(pageNumber - 1)} disabled={!hasPrevious}>
 				<ArrowBackIos />
 				<span>Previous</span>
