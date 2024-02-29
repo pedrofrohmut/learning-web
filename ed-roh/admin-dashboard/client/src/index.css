@@ -270,6 +270,46 @@ body {
     margin-right: 0.1em;
 }
 
+/* Forms */
+
+.form-container {
+    margin-bottom: 2rem;
+}
+
+.form-inline {
+    display: flex;
+    gap: 1em;
+}
+
+.form-inline .form-group {
+    display: inline-block;
+}
+
+.form-inline label {
+    display: inline-block;
+    margin-right: 0.5em;
+}
+
+.form-inline input[type="text"] {
+    padding: 0 1em;
+    height: 2rem;
+    font-size: var(--fs-regular);
+}
+
+.form-inline select {
+    padding: 0 1.5em 0 1em;
+    height: 2rem;
+    font-size: var(--fs-regular);
+}
+
+.form-inline button {
+    height: 2rem;
+    padding: 0 2em;
+    background-color: var(--primary-300);
+    border: 0;
+    color: white;
+}
+
 /* Layout */
 
 .layout {

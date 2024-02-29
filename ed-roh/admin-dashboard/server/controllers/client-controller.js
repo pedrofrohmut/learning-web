@@ -39,11 +39,11 @@ export const getTransactions = async (req, res) => {
 	// typeOf sort: isSorted: boolean, sortField: string, sortOrder: asc | desc
 	// const { page = 1, pageSize = 20, sort = null, search = "" } = req.query
 
-	const pageNumber   = Number(req.query.page)     || 0
+	const pageNumber   = Number(req.query.pageNumber) || 0
 	const pageSize     = Number(req.query.pageSize) || 20
-	const searchUserId = req.query.userId           || ""
+	const searchUserId = req.query.userId || ""
 	//const searchCost   = req.query.cost             || ""
-	const sortOrder    = req.query.sortOrder        || 1  // 1 means Ascending and -1 Descending
+	//const sortOrder    = req.query.sortOrder        || 1  // 1 means Ascending and -1 Descending
 
 	const skipCount = pageNumber * pageSize
 
@@ -66,6 +66,8 @@ export const getTransactions = async (req, res) => {
 	    startIndex: skipCount,
 	    endIndex: skipCount + pageSize,
 	    count: transactions.length - 1,
+	    pageNumber,
+	    pageSize,
 	    hasPrevious: pageNumber > 0,
 	    hasNext: transactions.length > pageSize,
 	    data: transactions.slice(0, -1)  // Remove extra element before sending
