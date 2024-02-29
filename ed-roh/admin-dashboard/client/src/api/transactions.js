@@ -6,6 +6,7 @@ export const getTransactions = async args => {
     urlArr.push("client/transactions")
     urlArr.push("?pageSize=" + args.pageSize)
     urlArr.push("&pageNumber=" + args.pageNumber)
+    urlArr.push("&sortType=" + args.sortType)
 
     if (args.userId) {
 	urlArr.push("&userId=" + args.userId)

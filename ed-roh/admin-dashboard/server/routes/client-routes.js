@@ -1,6 +1,6 @@
 import { Router } from "express"
 
-import { getProducts, getCustomers, getTransactions } from "../controlles/client-controller.js"
+import { getProducts, getCustomers, getTransactions } from "../controllers/client-controller.js"
 
 const router = Router()
 

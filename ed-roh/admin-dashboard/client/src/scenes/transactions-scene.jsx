@@ -15,16 +15,11 @@ const TransactionsScene = () => {
 
     // Form fields
     const [userId, setUserId] = useState("")
-
-    // Form refs
-    // const userIdRef = useRef(null)
-    // const filterRef = useRef(null)
-
+    const [sortType, setSortType] = useState("noSort")
 
     const fetcher = async args => {
 	setIsLoading(true)
 
-	// const response = await getTransactions({ pageNumber, pageSize, userId })
 	const response = await getTransactions(args)
 
 	setTransactions(response.data)
@@ -40,50 +35,28 @@ const TransactionsScene = () => {
 
     const handleSubmit = async e => {
 	e.preventDefault()
-	fetcher({ pageNumber, pageSize, userId })
+	fetcher({ pageNumber, pageSize, userId, sortType })
     }
 
     const handleNext = () => {
 	if (hasNext) {
-	    fetcher({ pageNumber: pageNumber + 1, pageSize, userId })
+	    fetcher({ pageNumber: pageNumber + 1, pageSize, userId, sortType })
 	}
     }
 
     const handlePrevious = () => {
 	if (hasPrevious) {
-	    fetcher({ pageNumber: pageNumber - 1, pageSize, userId })
+	    fetcher({ pageNumber: pageNumber - 1, pageSize, userId, sortType })
 	}
     }
 
-    // Brain Storm #1
-    // TODOS: make a table for: ID, UserId, CreatedAt, Number of Products, Cost
     // tableFooter: 1-20 of 500 next previous buttons
-    // Make a search input above the table
-    // Sorting asc or desc when clicking in the tableHeaders. Show arrow up or down icon on the header
     // Filters for what columns to show
     // Make a selectInput to choose between: 20, 50 and 100 results per page
 
-    // Brain Storm #2
-    // 1. The search is pointless. Can be removed and replaces by a filter for UserId
-    // 2. Sort by date is usefull and a search by day can be usefull
-    // 3. The search can be replaced by a textInput + selectInput that tells what is going to filtered
-    // 4. options to searchSelectInput can be: above/below Cost, before/after Date, in a day, by UserId
-
-    // Brain Storm #3
     // ** Dont make sort on headers filters make more sense
     // ** Page size does not seem important
-    // ** No search make only the filter with select + input_text
     // ** ToggleList still good
-    // ** Extra/Optional order by date asc/desc would be good (radio asc/desc/none)
-    // make select, input_text and radio into a form (inline?) with button 'filter'
-
-    // Brain Storm #4
-    // 1. Sort by: date asc/des or cost asc/des
-    // 2. Filter by: userId or cost below of or cost above of
-
-    // if (isLoading) {
-    // 	return <h1 style={{ marginTop: "2rem", textAlign: "center" }}>Is Loading...</h1>
-    // }
 
     // TODO: add animation so the table doesnt blink in and out
 
@@ -101,12 +74,12 @@ const TransactionsScene = () => {
 
     		    <div className="form-group">
     			<label htmlFor="">Sort by</label>
-    			<select>
-    			    <option value="">No sorting</option>
+    			<select onChange={e => setSortType(e.target.value)} value={sortType}>
+    			    <option value="noSort">No sorting</option>
     			    <option value="dateAsc">Date Asc</option>
-    			    <option value="dateDes">Date Des</option>
-    			    <option value="dateAsc">Cost Asc</option>
-    			    <option value="dateDec">Cost Asc</option>
+    			    <option value="dateDesc">Date Desc</option>
+    			    <option value="costAsc">Cost Asc</option>
+    			    <option value="costDesc">Cost Desc</option>
     			</select>
     		    </div>
 
@@ -128,6 +101,7 @@ const TransactionsScene = () => {
     				    <th>User Id</th>
     				    <th>Cost</th>
     				    <th>Producst count</th>
+				    <th>Date</th>
     				</tr>
     			    </thead>
     			    <tbody>
@@ -138,6 +112,7 @@ const TransactionsScene = () => {
     					<td>${transaction.cost}</td>
     					<td>{transaction.products &&
     					    transaction.products.length}</td>
+					<td>{transaction.createdAt}</td>
     				    </tr>
     				))}
     			    </tbody>

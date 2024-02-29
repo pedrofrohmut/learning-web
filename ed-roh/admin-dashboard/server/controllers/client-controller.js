@@ -1,10 +1,7 @@
-import { ObjectId } from "mongodb"
-
 import productModel from "../models/product-model.js"
 import productStatModel from "../models/product-stat-model.js"
 import transactionModel from "../models/transaction-model.js"
 import userModel from "../models/user-model.js"
-import { Types } from "mongoose"
 
 export const getProducts = async (_req, res) => {
     try {
@@ -36,16 +33,10 @@ export const getCustomers = async (req, res) => {
 
 export const getTransactions = async (req, res) => {
     try {
-	// typeOf sort: isSorted: boolean, sortField: string, sortOrder: asc | desc
-	// const { page = 1, pageSize = 20, sort = null, search = "" } = req.query
-
-	const pageNumber   = Number(req.query.pageNumber) || 0
-	const pageSize     = Number(req.query.pageSize) || 20
+	const pageNumber = Number(req.query.pageNumber) || 0
+	const pageSize = Number(req.query.pageSize) || 20
 	const searchUserId = req.query.userId || ""
-	//const searchCost   = req.query.cost             || ""
-	//const sortOrder    = req.query.sortOrder        || 1  // 1 means Ascending and -1 Descending
-
-	const skipCount = pageNumber * pageSize
+	const sortType = req.query.sortType || "noSort"
 
 	const query = transactionModel.find()
 
@@ -53,9 +44,26 @@ export const getTransactions = async (req, res) => {
 	    query.where("userId").equals(searchUserId)
 	}
 
-	//if (searchCost != "") {
-	//   query.where("cost").equals(searchCost)
-	//}
+	console.log(sortType)
+
+	if (sortType !== "noSort") {
+	    switch (sortType) {
+		case "dateAsc":
+		    query.sort([["createdAt", "asc"]])
+		    break
+		case "dateDesc":
+		    query.sort([["createdAt", "desc"]])
+		    break
+		case "costAsc":
+		    query.sort([["cost", "asc"]])
+		    break
+		case "costDesc":
+		    query.sort([["cost", "desc"]])
+		    break
+	    }
+	}
+
+	const skipCount = pageNumber * pageSize
 
 	query.skip(skipCount)
 	query.limit(pageSize + 1) // +1 to know if hasNext
@@ -65,7 +73,7 @@ export const getTransactions = async (req, res) => {
 	const response = {
 	    startIndex: skipCount,
 	    endIndex: skipCount + pageSize,
-	    count: transactions.length - 1,
+	    count: transactions.length - 1, // dec 1 because of extra
 	    pageNumber,
 	    pageSize,
 	    hasPrevious: pageNumber > 0,
