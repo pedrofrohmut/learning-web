@@ -64,24 +64,50 @@ export const getTransactions = async (req, res) => {
 	}
 
 	const skipCount = pageNumber * pageSize
+	const limit = pageSize + 1 // +1 to know if hasNext
 
 	query.skip(skipCount)
-	query.limit(pageSize + 1) // +1 to know if hasNext
+	query.limit(limit)
 
 	const transactions = await query.exec()
 
-	const response = {
-	    startIndex: skipCount,
-	    endIndex: skipCount + pageSize,
-	    count: transactions.length - 1, // dec 1 because of extra
-	    pageNumber,
-	    pageSize,
-	    hasPrevious: pageNumber > 0,
-	    hasNext: transactions.length > pageSize,
-	    data: transactions.slice(0, -1)  // Remove extra element before sending
+	const startIndex = skipCount
+	const hasPrevious = pageNumber > 0
+	const hasNext = transactions.length > pageSize
+
+	if (hasNext) {
+	    const endIndex = startIndex + pageSize - 1
+	    // dec 1 because of extra
+	    const count = transactions.length - 1
+	    // Remove extra element before sending
+	    const data = transactions.slice(0, -1)
+
+	    return res.status(200).json({
+		startIndex,
+		endIndex,
+		count,
+		pageNumber,
+		pageSize,
+		hasPrevious,
+		hasNext,
+		data
+	    })
 	}
 
-	return res.status(200).json(response)
+	const endIndex = startIndex + transactions.length - 1
+	const count = transactions.length
+	const data = transactions
+
+	return res.status(200).json({
+	    startIndex,
+	    endIndex,
+	    count,
+	    pageNumber,
+	    pageSize,
+	    hasPrevious,
+	    hasNext,
+	    data
+	})
     } catch (err) {
 	return res.status(500).json({ message: err.message })
     }
