@@ -207,6 +207,12 @@ body {
 .table {
     background-color: var(--bg-alt);
     border-collapse: collapse;
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+}
+
+.table.active {
+    opacity: 1;
 }
 
 .table thead {

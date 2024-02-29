@@ -24,7 +24,11 @@ const TransactionsScene = () => {
     const [showProd, setShowProd] = useState(false)
     const [showDate, setShowDate] = useState(true)
 
+    // Animation
+    const [isActive, setIsActive] = useState(false)
+
     const fetcher = async args => {
+	setIsActive(false)
 	setIsLoading(true)
 
 	const response = await getTransactions(args)
@@ -35,9 +39,10 @@ const TransactionsScene = () => {
 	setPageNumber(response.pageNumber)
 	setPageSize(response.pageSize)
 
+	setIsLoading(false)
 	setTimeout(() => {
-	    setIsLoading(false)
-	}, 100)
+	    setIsActive(true)
+	}, 200)
     }
 
     const handleSubmit = async e => {
@@ -134,7 +139,7 @@ const TransactionsScene = () => {
 
     		{!isLoading && transactions && (
     		    <>
-    			<table className="table">
+    			<table className={`table ${isActive && "active"}`}>
     			    <thead>
     				<tr>
     				    {showId     && <th>Id</th>}
