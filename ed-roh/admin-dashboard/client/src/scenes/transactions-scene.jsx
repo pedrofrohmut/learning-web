@@ -17,6 +17,13 @@ const TransactionsScene = () => {
     const [userId, setUserId] = useState("")
     const [sortType, setSortType] = useState("noSort")
 
+    // Toggler fields
+    const [showId, setShowId] = useState(false)
+    const [showUserId, setShowUserId] = useState(true)
+    const [showCost, setShowCost] = useState(true)
+    const [showProd, setShowProd] = useState(false)
+    const [showDate, setShowDate] = useState(true)
+
     const fetcher = async args => {
 	setIsLoading(true)
 
@@ -51,12 +58,10 @@ const TransactionsScene = () => {
     }
 
     // tableFooter: 1-20 of 500 next previous buttons
-    // Filters for what columns to show
     // Make a selectInput to choose between: 20, 50 and 100 results per page
 
     // ** Dont make sort on headers filters make more sense
     // ** Page size does not seem important
-    // ** ToggleList still good
 
     // TODO: add animation so the table doesnt blink in and out
 
@@ -87,6 +92,41 @@ const TransactionsScene = () => {
     		</form>
     	    </div>
 
+	    {!isLoading && transactions && (
+		<ul className="table-toggle-list">
+		    <li>
+			<label htmlFor="id-ch">
+			    <input type="checkbox" id="id-ch" checked={showId}
+				   onChange={() => setShowId(!showId)}/> Id
+			</label>
+		    </li>
+		    <li>
+			<label htmlFor="user-id-ch">
+			    <input type="checkbox" id="user-id-ch" checked={showUserId}
+				   onChange={() => setShowUserId(!showUserId)}/> UserId
+			</label>
+		    </li>
+		    <li>
+			<label htmlFor="cost-ch">
+			    <input type="checkbox" id="cost-ch" checked={showCost}
+				   onChange={() => setShowCost(!showCost)}/> Cost
+			</label>
+		    </li>
+		    <li>
+			<label htmlFor="prod-ch">
+			    <input type="checkbox" id="prod-ch" checked={showProd}
+				   onChange={() => setShowProd(!showProd)}/> Prod
+			</label>
+		    </li>
+		    <li>
+			<label htmlFor="date-ch">
+			    <input type="checkbox" id="date-ch" checked={showDate}
+				   onChange={() => setShowDate(!showDate)}/> Date
+			</label>
+		    </li>
+		</ul>
+	    )}
+
     	    <div className="table-container">
 		{isLoading && (
 		    <h1 style={{ marginTop: "2rem", textAlign: "center" }}>Is Loading...</h1>
@@ -97,22 +137,22 @@ const TransactionsScene = () => {
     			<table className="table">
     			    <thead>
     				<tr>
-    				    <th>Id</th>
-    				    <th>User Id</th>
-    				    <th>Cost</th>
-    				    <th>Producst count</th>
-				    <th>Date</th>
+    				    {showId     && <th>Id</th>}
+    				    {showUserId && <th>User Id</th>}
+    				    {showCost   && <th>Cost</th>}
+    				    {showProd   && <th>Producst count</th>}
+				    {showDate   && <th>Date</th>}
     				</tr>
     			    </thead>
     			    <tbody>
     				{transactions.map(transaction => (
     				    <tr key={transaction._id}>
-    					<td>{transaction._id}</td>
-    					<td>{transaction.userId}</td>
-    					<td>${transaction.cost}</td>
-    					<td>{transaction.products &&
-    					    transaction.products.length}</td>
-					<td>{transaction.createdAt}</td>
+    					{showId     && <td>{transaction._id}</td>}
+    					{showUserId && <td>{transaction.userId}</td>}
+    					{showCost   && <td>${transaction.cost}</td>}
+    					{showProd   && <td>{transaction.products &&
+    							transaction.products.length}</td>}
+					{showDate   && <td>{transaction.createdAt}</td>}
     				    </tr>
     				))}
     			    </tbody>
