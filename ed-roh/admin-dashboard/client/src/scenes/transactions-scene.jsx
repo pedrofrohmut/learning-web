@@ -5,17 +5,23 @@ import SceneContainer from "../components/shared/scene-container"
 import SceneTitle from "../components/shared/scene-title"
 import { getTransactions } from "../api/transactions"
 
-const TransactionsScene = () => {
-    const [isLoading, setIsLoading] = useState(false)
-    const [transactions, setTransactions] = useState(null)
-    const [pageNumber, setPageNumber] = useState(0)
-    const [pageSize, setPageSize] = useState(10)
-    const [hasNext, setHasNext] = useState(false)
-    const [hasPrevious, setHasPrevious] = useState(false)
+// Variables moved out from react state.
+// State will have only variables responsible for changing the UI
+let transactions = null
+let hasNext = false
+let hasPrevious = false
+let pageSize = 10
+let pageNumber = 0
+let resultsCount = 0
+let startIndex = 0
+let endIndex = 0
 
-    // Form fields
-    const [userId, setUserId] = useState("")
-    const [sortType, setSortType] = useState("noSort")
+const TransactionsScene = () => {
+    // For fetching state
+    const [isLoading, setIsLoading] = useState(false)
+
+    // Animation
+    const [isActive, setIsActive] = useState(false)
 
     // Toggler fields
     const [showId, setShowId] = useState(false)
@@ -24,8 +30,9 @@ const TransactionsScene = () => {
     const [showProd, setShowProd] = useState(false)
     const [showDate, setShowDate] = useState(true)
 
-    // Animation
-    const [isActive, setIsActive] = useState(false)
+    // Form fields
+    const userIdRef = useRef(null)
+    const sortTypeRef = useRef(null)
 
     const fetcher = async args => {
 	setIsActive(false)
@@ -33,11 +40,15 @@ const TransactionsScene = () => {
 
 	const response = await getTransactions(args)
 
-	setTransactions(response.data)
-	setHasNext(response.hasNext)
-	setHasPrevious(response.hasPrevious)
-	setPageNumber(response.pageNumber)
-	setPageSize(response.pageSize)
+	transactions = response.data
+	hasNext = response.hasNext
+	hasPrevious = response.hasPrevious
+	pageNumber = response.pageNumber
+	pageSize = response.pageSize
+
+	startIndex = response.startIndex
+	endIndex = response.endIndex
+	resultsCount = response.count
 
 	setIsLoading(false)
 	setTimeout(() => {
@@ -47,6 +58,8 @@ const TransactionsScene = () => {
 
     const handleSubmit = async e => {
 	e.preventDefault()
+	const userId = userIdRef.current.value
+	const sortType = sortTypeRef.current.value
 	fetcher({ pageNumber, pageSize, userId, sortType })
     }
 
@@ -62,14 +75,6 @@ const TransactionsScene = () => {
 	}
     }
 
-    // tableFooter: 1-20 of 500 next previous buttons
-    // Make a selectInput to choose between: 20, 50 and 100 results per page
-
-    // ** Dont make sort on headers filters make more sense
-    // ** Page size does not seem important
-
-    // TODO: add animation so the table doesnt blink in and out
-
     return (
     	<SceneContainer className="transactions__scene-container">
     	    <SceneTitle title="Transactions" subtitle="Entire list of transactions" />
@@ -78,13 +83,12 @@ const TransactionsScene = () => {
 		<form className="form form-inline" onSubmit={handleSubmit}>
 		    <div className="form-group">
 			<label htmlFor="">Filter</label>
-			<input type="text" onChange={e => setUserId(e.target.value)}
-			       value={userId} placeholder="User id" />
+			<input type="text" ref={userIdRef} />
 		    </div>
 
     		    <div className="form-group">
     			<label htmlFor="">Sort by</label>
-    			<select onChange={e => setSortType(e.target.value)} value={sortType}>
+			<select ref={sortTypeRef}>
     			    <option value="noSort">No sorting</option>
     			    <option value="dateAsc">Date Asc</option>
     			    <option value="dateDesc">Date Desc</option>
@@ -162,6 +166,9 @@ const TransactionsScene = () => {
     				))}
     			    </tbody>
     			</table>
+			<div className="table-page-description">
+			    {`Page ${pageNumber}. Showing ${resultsCount} results, from ${startIndex} to ${endIndex}`}
+			</div>
     			<div className="table-buttons">
     			    <button onClick={handlePrevious} disabled={!hasPrevious}>
     				<ArrowBackIos />
