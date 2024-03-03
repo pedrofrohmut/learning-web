@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material"
 
 import SceneContainer from "../components/shared/scene-container"
@@ -33,6 +33,18 @@ const TransactionsScene = () => {
     // Form fields
     const userIdRef = useRef(null)
     const sortTypeRef = useRef(null)
+
+    // Component unmount
+    useEffect(() => () => {
+	transactions = null
+	hasNext = false
+	hasPrevious = false
+	pageSize = 10
+	pageNumber = 0
+	resultsCount = 0
+	startIndex = 0
+	endIndex = 0
+    }, [])
 
     const fetcher = async args => {
 	setIsActive(false)

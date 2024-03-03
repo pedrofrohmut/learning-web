@@ -4,15 +4,13 @@ import { useGetCustomersQuery } from "../redux/api"
 import { phoneFmt } from "../utils"
 import SceneContainer from "../components/shared/scene-container"
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material"
+import { getCustomers } from "../api/customers"
 
-// TODO:
-// 1. Replace this redux toolkit api call for a simple axios one
-// 2. Set .active on the table for the animation to work
-// 3. Move state to let variables if they are not needed
-// 4. Chech out with transactions table so see if there are any features to add here
+const pageSize = 15
+let customers = null
+
 const CustomersScene = () => {
-    const { data: customers, isLoading } = useGetCustomersQuery()
-
+    // Togglers
     const [showId, setShowId] = useState(false)
     const [showName, setShowName] = useState(true)
     const [showEmail, setShowEmail] = useState(true)
@@ -21,15 +19,39 @@ const CustomersScene = () => {
     const [showOccupation, setShowOccupation] = useState(true)
     const [showRole, setShowRole] = useState(false)
 
-    const [pageNumber, setPageNumber] = useState(0)
-    const [pageSize, setPageSize] = useState(10)
+    // Fetcher state
+    const [isLoading, setIsLoading] = useState(true)
+    const [isActive, setIsActive] = useState(false)
+
+    // Pagers
     const [customersSlice, setCustomersSlice] = useState([])
+    const [pageNumber, setPageNumber] = useState(0)
+    const [customersCount, setCustomersCount] = useState(0)
+    const [startIndex, setStartIndex] = useState(0)
+    const [endIndex, setEndIndex] = useState(0)
+
+    useEffect(() => {
+	setIsLoading(true)
+	setIsActive(false)
+	getCustomers().then(data => {
+	    customers = data
+	    setIsLoading(false)
+	    setTimeout(() => setIsActive(true), 200)
+	})
+	// Component unmount
+	return () => {
+	    customers = null
+	}
+    }, [])
 
     useEffect(() => {
 	const pageStart = pageNumber * pageSize
 	const pageEnd = (pageNumber * pageSize) + pageSize
 	if (!isLoading && customers) {
 	    setCustomersSlice(customers.slice(pageStart, pageEnd))
+	    setCustomersCount(customersSlice.length)
+	    setStartIndex(pageStart)
+	    setEndIndex(pageStart + customersSlice.length - 1)
 	}
     }, [isLoading, customers, pageNumber])
 
@@ -88,7 +110,7 @@ const CustomersScene = () => {
 	    <div className="table-container">
 		{!isLoading && customers && (
 		    <>
-			<table className="table">
+			<table className={`table ${isActive && "active"}`}>
 			    <thead>
 				<tr>
 				    {showId          && <th className="th-id">ID</th>}
@@ -114,6 +136,9 @@ const CustomersScene = () => {
 				))}
 			    </tbody>
 			</table>
+			<div className="table-page-description">
+			    {`Page ${pageNumber}. Showing ${customersCount} customers, from ${startIndex} to ${endIndex}`}
+			</div>
 			<div className="table-buttons">
 			    <button onClick={() => setPageNumber(pageNumber - 1)} disabled={!hasPrevious}>
 				<ArrowBackIos />

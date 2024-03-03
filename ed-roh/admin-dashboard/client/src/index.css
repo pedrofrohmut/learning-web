@@ -230,7 +230,7 @@ button {
     background-color: var(--bg-alt);
     border-collapse: collapse;
     opacity: 0;
-    transition: opacity 500ms ease-in-out;
+    transition: opacity 500ms ease-in;
 }
 
 .table.active {
