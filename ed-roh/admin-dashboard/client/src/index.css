@@ -55,6 +55,7 @@
     --fs-extra-large: 1.3rem;
 
     --scene-padding: 1.5rem 2.5rem;
+    --border-radius: 5px;
 }
 
 @media (max-width: 768px) {
@@ -127,8 +128,8 @@ body {
     --secondary-800: var(--yellow-200);
     --secondary-900: var(--yellow-100);
 
-    --bg-default: var(--neutral-800);
-    --bg-alt: var(--neutral-900);
+    --bg-default: var(--neutral-700);
+    --bg-alt: var(--neutral-800);
     --bg-active: var(--neutral-700);
     --bg-hover: #0003;
 
@@ -172,8 +173,8 @@ body {
     --secondary-800: var(--yellow-800);
     --secondary-900: var(--yellow-900);
 
-    --bg-default: var(--primary-600);
-    --bg-alt: var(--primary-500);
+    --bg-default: var(--neutral-800);
+    --bg-alt: var(--neutral-700);
     --bg-active: var(--secondary-300);
     --bg-hover: #fefefe12;
 
@@ -186,6 +187,12 @@ body {
 }
 
 /* General rules */
+
+button {
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    padding: 0.3em 0.7em;
+}
 
 .icon-button {
     border: 0;
@@ -202,6 +209,21 @@ body {
 .table-container {
     overflow-x: auto;
     width: fit-content;
+}
+
+.table-toggle-list {
+    list-style: none;
+    display: flex;
+    gap: 1.4em;
+    margin-bottom: 1.3rem;
+}
+
+.table-toggle-list label {
+    cursor: pointer;
+}
+
+.table-toggle-list input[type="checkbox"] {
+    margin-right: 0.1em;
 }
 
 .table {
@@ -229,6 +251,12 @@ body {
     background-color: var(--bg-hover);
 }
 
+.table-page-description {
+    padding: 0.3em;
+    text-align: right;
+    color: var(--neutral-200);
+}
+
 .table-buttons {
     margin-top: 1.25rem;
     display: flex;
@@ -242,13 +270,11 @@ body {
     background-color: var(--bg-default);
     color: var(--neutral-200);
     border: 1px solid var(--neutral-200);
-    border-radius: 3px;
-    cursor: pointer;
+    padding: 0.3em 0;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.6em;
-    padding: 0.3em 0;
 }
 
 .table-buttons svg {
@@ -259,21 +285,6 @@ body {
     color: var(--neutral-500);
     background-color: var(--bg-default);
     border: 1px solid var(--neutral-500);
-}
-
-.table-toggle-list {
-    list-style: none;
-    display: flex;
-    gap: 1.4em;
-    margin-bottom: 1.3rem;
-}
-
-.table-toggle-list label {
-    cursor: pointer;
-}
-
-.table-toggle-list input[type="checkbox"] {
-    margin-right: 0.1em;
 }
 
 /* Forms */
@@ -296,16 +307,17 @@ body {
     margin-right: 0.5em;
 }
 
+.form-inline select,
 .form-inline input[type="text"] {
     padding: 0 1em;
     height: 2rem;
     font-size: var(--fs-regular);
+    border: 0;
+    border-radius: var(--border-radius);
 }
 
 .form-inline select {
-    padding: 0 1.5em 0 1em;
-    height: 2rem;
-    font-size: var(--fs-regular);
+    padding-right: 1.5em;
 }
 
 .form-inline button {
@@ -314,6 +326,7 @@ body {
     background-color: var(--primary-300);
     border: 0;
     color: white;
+    margin-left: 0.5em;
 }
 
 /* Layout */
@@ -356,7 +369,7 @@ body {
 .navbar__search {
     display: flex;
     gap: 0.1rem;
-    border-radius: 9px;
+    border-radius: var(--border-radius);
     background-color: var(--bg-alt);
     padding: 0.1rem 1.5rem;
 }
@@ -568,6 +581,7 @@ ul.sidebar__menu li.active {
     padding: 2em;
     max-width: 24rem;
     background-color: var(--bg-alt);
+    border-radius: var(--border-radius);
 }
 
 .product__card-container > *:not(:first-child) {
@@ -597,7 +611,7 @@ ul.sidebar__menu li.active {
     padding: 0.5em 1.6em;
     color: var(--neutral-200);
     border: 0;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
 }
 
 .product__id {

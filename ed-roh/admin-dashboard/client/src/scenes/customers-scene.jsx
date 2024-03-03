@@ -5,6 +5,11 @@ import { phoneFmt } from "../utils"
 import SceneContainer from "../components/shared/scene-container"
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material"
 
+// TODO:
+// 1. Replace this redux toolkit api call for a simple axios one
+// 2. Set .active on the table for the animation to work
+// 3. Move state to let variables if they are not needed
+// 4. Chech out with transactions table so see if there are any features to add here
 const CustomersScene = () => {
     const { data: customers, isLoading } = useGetCustomersQuery()
 

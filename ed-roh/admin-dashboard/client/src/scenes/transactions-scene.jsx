@@ -64,12 +64,16 @@ const TransactionsScene = () => {
     }
 
     const handleNext = () => {
+	const userId = userIdRef.current.value || ""
+	const sortType = sortTypeRef.current.value || "noSort"
 	if (hasNext) {
 	    fetcher({ pageNumber: pageNumber + 1, pageSize, userId, sortType })
 	}
     }
 
     const handlePrevious = () => {
+	const userId = userIdRef.current.value || ""
+	const sortType = sortTypeRef.current.value || "noSort"
 	if (hasPrevious) {
 	    fetcher({ pageNumber: pageNumber - 1, pageSize, userId, sortType })
 	}
@@ -137,10 +141,6 @@ const TransactionsScene = () => {
 	    )}
 
     	    <div className="table-container">
-		{isLoading && (
-		    <h1 style={{ marginTop: "2rem", textAlign: "center" }}>Is Loading...</h1>
-		)}
-
     		{!isLoading && transactions && (
     		    <>
     			<table className={`table ${isActive && "active"}`}>
