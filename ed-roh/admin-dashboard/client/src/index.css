@@ -617,3 +617,12 @@ ul.sidebar__menu li.active {
 .product__id {
     margin-top: 1rem;
 }
+
+/* Map */
+
+.map-container {
+    margin-top: 2rem;
+    height: 75vh;
+    color: var(--neutral-600);
+    font-size: var(--fs-small);
+}

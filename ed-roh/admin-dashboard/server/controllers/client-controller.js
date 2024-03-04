@@ -1,3 +1,5 @@
+import getCountryISO3 from "country-iso-2-to-3"
+
 import productModel from "../models/product-model.js"
 import productStatModel from "../models/product-stat-model.js"
 import transactionModel from "../models/transaction-model.js"
@@ -22,7 +24,7 @@ export const getProducts = async (_req, res) => {
     }
 }
 
-export const getCustomers = async (req, res) => {
+export const getCustomers = async (_req, res) => {
     try {
 	const customers = await userModel.find({ role: "user" }).select("-password")
 	return res.status(200).json(customers)
@@ -108,6 +110,29 @@ export const getTransactions = async (req, res) => {
 	    hasNext,
 	    data
 	})
+    } catch (err) {
+	return res.status(500).json({ message: err.message })
+    }
+}
+
+export const getGeography = async (req, res) => {
+    try {
+	const users = await userModel.find({})
+
+	const usersCountryIso3 = users.map(x => x.country).map(x => getCountryISO3(x))
+
+	// Format: { id: CountryIso3, value: usersCount }
+	const fmt_data = usersCountryIso3.reduce((acc, curr) => {
+	    const obj = acc.find(x => x.id === curr)
+	    if (obj) {
+		obj.value++
+		return acc
+	    } else {
+		return acc.concat({ id: curr, value: 1 })
+	    }
+	}, [])
+
+	return res.status(200).send(fmt_data)
     } catch (err) {
 	return res.status(500).json({ message: err.message })
     }
