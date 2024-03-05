@@ -5,17 +5,14 @@ import userModel from "./models/user-model.js"
 import productModel from "./models/product-model.js"
 import productStatModel from "./models/product-stat-model.js"
 import transactionModel from "./models/transaction-model.js"
-import { dataUser, dataProduct, dataProductStat, dataTransaction } from "./data.js"
+import overallStatModel from "./models/overall-stat.js"
+import { dataUser, dataProduct, dataProductStat, dataTransaction, dataOverallStat } from "./data.js"
 
 dotenv.config()
 
 const run = async () => {
     try {
         // Keep is here in case this options are ever necessary
-        // await mongoose.connect(process.env.MONGO_URL, {
-        //     useNewUrlParser: true,
-        //     useUnifiedTopology: true
-        // })
         await mongoose.connect(process.env.MONGO_URL)
         console.log("Connected to MongoDB: http://localhost:27017")
 
@@ -24,7 +21,9 @@ const run = async () => {
 	// await productModel.insertMany(dataProduct)
 	// await productStatModel.insertMany(dataProductStat)
 	// await transactionModel.insertMany(dataTransaction)
+	await overallStatModel.insertMany(dataOverallStat)
 	console.log("New data inserted in the database")
+	exit(0)
     } catch (err) {
 	console.error(err)
     }

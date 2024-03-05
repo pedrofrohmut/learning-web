@@ -7,6 +7,7 @@ import ProductsScene from "./scenes/products-scene"
 import CustomersScene from "./scenes/customers-scene"
 import TransactionsScene from "./scenes/transactions-scene"
 import GeographyScene from "./scenes/geography-scene"
+import OverviewScene from "./scenes/overview-scene"
 
 const App = () =>  {
     const theme = useSelector(state => state.global.mode)
@@ -22,6 +23,7 @@ const App = () =>  {
 			<Route path="/customers" element={<CustomersScene />} />
 			<Route path="/transactions" element={<TransactionsScene />} />
 			<Route path="/geography" element={<GeographyScene />} />
+			<Route path="/overview" element={<OverviewScene />} />
 		    </Route>
 		</Routes>
 	    </BrowserRouter>

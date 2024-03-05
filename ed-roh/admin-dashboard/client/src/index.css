@@ -128,7 +128,7 @@ body {
     --secondary-800: var(--yellow-200);
     --secondary-900: var(--yellow-100);
 
-    --bg-default: var(--neutral-700);
+    --bg-default: var(--neutral-900);
     --bg-alt: var(--neutral-800);
     --bg-active: var(--neutral-700);
     --bg-hover: #0003;
@@ -625,4 +625,11 @@ ul.sidebar__menu li.active {
     height: 75vh;
     color: var(--neutral-600);
     font-size: var(--fs-small);
+}
+
+/* Graph */
+
+.graph-container {
+    margin-top: 2rem;
+    height: 70vh;
 }

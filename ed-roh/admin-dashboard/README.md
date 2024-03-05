@@ -9,3 +9,4 @@
 
 - (Nivo Map)[https://nivo.rocks/choropleth/]
 - (Convert: Country ISO 2 to 3)[https://github.com/vtex/country-iso-2-to-3]
+- (Nive Theming)[https://nivo.rocks/guides/theming/]
