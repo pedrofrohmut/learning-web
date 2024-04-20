@@ -44,6 +44,4 @@ const OverviewScene = () => {
     )
 }
 
-// {!isLoading && sales && <pre>{JSON.stringify(sales, null, 8)}</pre>}
-
 export default OverviewScene
