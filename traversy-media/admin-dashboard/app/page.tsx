@@ -1,6 +1,8 @@
+import { Folder, MessageCircle, Newspaper, User } from "lucide-react"
+
+import AnalyticsChart from "@/components/dashboard/analytics-chart"
 import DashboardCard from "@/components/dashboard/dashboard-card"
 import PostsTable from "@/components/posts/posts-table"
-import { Folder, MessageCircle, Newspaper, User } from "lucide-react"
 
 const HomePage = () => {
     return (
@@ -27,7 +29,8 @@ const HomePage = () => {
                     icon={<MessageCircle className="text-slate-500" size={72} />}
                 />
             </div>
-            <PostsTable title="Latest Posts" />
+            <AnalyticsChart />
+            <PostsTable title="Latest Posts" limit={5} />
         </>
     )
 }

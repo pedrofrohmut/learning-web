@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 
-import Navbar from "@/components/navbar"
-import Sidebar from "@/components/sidebar"
+import Navbar from "@/components/layout/navbar"
+import Sidebar from "@/components/layout/sidebar"
 
 import "./globals.css"
 
@@ -23,7 +23,7 @@ export default function RootLayout({
             <body className={inter.className}>
                 <Navbar />
                 <div className="flex">
-                    <div className="hidden md:block h-[100vh] w-[300px]">
+                    <div className="hidden md:block" style={{ height: "100vh", minWidth: 220 }}>
                         <Sidebar />
                     </div>
                     <div className="p-5 w-full md:max-w-6xl">

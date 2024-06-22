@@ -1,4 +1,4 @@
-import { PostComment } from "./post-comment"
+import PostComment from "./post-comment"
 
 type Post = {
     id: string
