@@ -14,7 +14,7 @@ import { LayoutDashboard, Newspaper, Folders, CreditCard, Settings, User } from 
 
 const Sidebar = () => {
     return (
-        <Command className="bg-secondary rounded-none">
+        <Command className="bg-slate-300 rounded-none">
             <CommandInput placeholder="Type a command or search..." />
 
             <CommandList>
