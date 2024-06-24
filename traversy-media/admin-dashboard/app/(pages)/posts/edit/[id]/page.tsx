@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
+import { useToast } from "@/components/ui/use-toast"
 
 import postsData from "@/data/posts"
 
@@ -33,6 +34,7 @@ type EditPostPageProps = {
 }
 
 const EditPostPage = ({ params }: EditPostPageProps) => {
+    const { toast } = useToast()
     const postId = params.id
     const post = postsData.find((x) => x.id === postId)
 
@@ -47,7 +49,10 @@ const EditPostPage = ({ params }: EditPostPageProps) => {
     })
 
     const handleSubmit = (data: z.infer<typeof formSchema>) => {
-        console.log(data)
+        toast({
+            title: "Post has been updated successfully",
+            description: `Updated by ${post?.author} on ${post?.date}`
+        })
     }
 
     return (
@@ -56,7 +61,6 @@ const EditPostPage = ({ params }: EditPostPageProps) => {
             <h3 className="text-2xl mb-4">Edit Post</h3>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
-
                     {/* Title */}
                     <FormField
                         control={form.control}
@@ -141,7 +145,9 @@ const EditPostPage = ({ params }: EditPostPageProps) => {
                         )}
                     />
 
-                    <Button className="w-full dark:bg-slate-800 dark:text-white ">Update Post</Button>
+                    <Button className="w-full dark:bg-slate-800 dark:text-white ">
+                        Update Post
+                    </Button>
                 </form>
             </Form>
         </>
