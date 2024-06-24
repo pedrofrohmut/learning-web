@@ -10,6 +10,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuItem
 } from "@/components/ui/dropdown-menu"
+import ThemeToggler from "@/components/shared/theme-toggler"
 
 import logoImage from "@/img/logo.png"
 
@@ -20,28 +21,32 @@ const Navbar = () => {
                 <Image src={logoImage} alt="TraversyPress" width={40} />
             </Link>
 
-            <DropdownMenu>
-                <DropdownMenuTrigger>
-                    <Avatar>
-                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                        <AvatarFallback className="text-black">BT</AvatarFallback>
-                    </Avatar>
-                </DropdownMenuTrigger>
+            <div className="flex items-center">
+                <ThemeToggler />
 
-                <DropdownMenuContent>
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenu>
+                    <DropdownMenuTrigger>
+                        <Avatar>
+                            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                            <AvatarFallback className="text-black">BT</AvatarFallback>
+                        </Avatar>
+                    </DropdownMenuTrigger>
 
-                    <DropdownMenuSeparator />
+                    <DropdownMenuContent>
+                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
 
-                    <DropdownMenuItem>
-                        <Link href="/profile">Profile</Link>
-                    </DropdownMenuItem>
+                        <DropdownMenuSeparator />
 
-                    <DropdownMenuItem>
-                        <Link href="/auth">Sign Out</Link>
-                    </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
+                        <DropdownMenuItem>
+                            <Link href="/profile">Profile</Link>
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem>
+                            <Link href="/auth">Sign Out</Link>
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </div>
         </div>
     )
 }
