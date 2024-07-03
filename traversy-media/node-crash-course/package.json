@@ -1,0 +1,16 @@
+{
+    "name": "node-crash-course",
+    "version": "1.0.0",
+    "main": "index.js",
+    "type": "module",
+    "author": "Pedro Frohmut",
+    "license": "MIT",
+    "devDependencies": {
+        "nodemon": "^3.1.4",
+        "prettier": "^3.3.2"
+    },
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon --env-file=.env server.js"
+    }
+}
