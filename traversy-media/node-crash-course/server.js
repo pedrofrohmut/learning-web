@@ -44,7 +44,22 @@ const getUserHandler = (req, res) => {
     res.end()
 }
 
-// Route not found handler
+// Route handle for POST /api/users
+const createUserHandler = (req, res) => {
+    let body = ""
+    req.on("data", (chunk) => {
+        body += chunk.toString()
+    })
+    req.on("end", () => {
+        const newUser = JSON.parse(body)
+        users.push(newUser)
+        res.statusCode = 201
+        res.write(JSON.stringify(newUser))
+        res.end()
+    })
+}
+
+// Route handler for NotFound
 const notFoundHandler = (req, res) => {
     res.setHeader("Content-Type", "text/plain")
     res.statusCode = 404
@@ -55,6 +70,8 @@ const notFoundHandler = (req, res) => {
 const doRouting = (req, res) => {
     if (req.url === "/api/users" && req.method === "GET") {
         getUsersHandler(req, res)
+    } else if (req.url === "/api/users" && req.method === "POST") {
+        createUserHandler(req, res)
     } else if (req.url.match(userIdRegex) && req.method === "GET") {
         getUserHandler(req, res)
     } else {
