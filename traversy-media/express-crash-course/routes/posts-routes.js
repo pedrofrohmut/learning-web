@@ -39,4 +39,47 @@ router.get("/:id", (req, res) => {
     res.status(200).json(found)
 })
 
+// Create post
+router.post("/", (req, res) => {
+    if (!req.body.id) {
+        res.status(400).send("Post id is required")
+        return
+    }
+    if (!req.body.title) {
+        res.status(400).send("Post title is required")
+        return
+    }
+    res.status(201).json([...posts, req.body])
+})
+
+router.put("/:id", (req, res) => {
+    const postId = parseInt(req.params.id)
+    const found = posts.find(x => x.id === postId)
+    if (!found) {
+        res.status(404).send(`Post with id of ${postId} not found`)
+        return
+    }
+
+    const postTitle = req.body.title
+    if (!postTitle) {
+        res.status(400).send("Post title is required")
+        return
+    }
+
+    found.title = postTitle
+    res.status(200).json(posts)
+})
+
+router.delete("/:id", (req, res) => {
+    const postId = parseInt(req.params.id)
+    const found = posts.find(x => x.id === postId)
+    if (!found) {
+        res.status(404).send(`Post with id of ${postId} not found`)
+        return
+    }
+
+    const newPosts = posts.filter(x => x.id !== postId)
+    res.status(200).json(newPosts)
+})
+
 module.exports = router
