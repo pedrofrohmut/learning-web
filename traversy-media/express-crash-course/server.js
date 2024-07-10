@@ -1,22 +1,17 @@
 const express = require("express")
-const path = require("path")
+
+const postsRoutes = require("./routes/posts-routes")
 
 const app = express()
 
-// Setup static folder
-app.use(express.static(path.join(__dirname, "public")))
+// Body parser middleware
+app.use(express.json())
 
-//app.get("/", (req, res) => {
-//    //res.send({ message: "Hello, World!!!" })
-//    const indexFilePath = path.join(__dirname, "public", "index.html")
-//    res.sendFile(indexFilePath)
-//})
-//
-//app.get("/about", (req, res) => {
-//    //res.send({ message: "About the world" })
-//    const aboutFilePath = path.join(__dirname, "public", "about.html")
-//    res.sendFile(aboutFilePath)
-//})
+// Allow for data
+app.use(express.urlencoded({ extended: false }))
+
+// Routes
+app.use("/api/posts", postsRoutes)
 
 const PORT = process.env.PORT || 8000
 
