@@ -1,5 +1,6 @@
 const express = require("express")
 
+const loggerMiddleware = require("./middlewares/logger-middleware")
 const postsRoutes = require("./routes/posts-routes")
 
 const app = express()
@@ -9,6 +10,9 @@ app.use(express.json())
 
 // Allow for data
 app.use(express.urlencoded({ extended: false }))
+
+// Logger Middleware
+app.use(loggerMiddleware)
 
 // Routes
 app.use("/api/posts", postsRoutes)

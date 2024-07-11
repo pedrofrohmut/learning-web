@@ -52,9 +52,10 @@ router.post("/", (req, res) => {
     res.status(201).json([...posts, req.body])
 })
 
+// Update a post
 router.put("/:id", (req, res) => {
     const postId = parseInt(req.params.id)
-    const found = posts.find(x => x.id === postId)
+    const found = posts.find((x) => x.id === postId)
     if (!found) {
         res.status(404).send(`Post with id of ${postId} not found`)
         return
@@ -70,15 +71,16 @@ router.put("/:id", (req, res) => {
     res.status(200).json(posts)
 })
 
+// Delete a post
 router.delete("/:id", (req, res) => {
     const postId = parseInt(req.params.id)
-    const found = posts.find(x => x.id === postId)
+    const found = posts.find((x) => x.id === postId)
     if (!found) {
         res.status(404).send(`Post with id of ${postId} not found`)
         return
     }
 
-    const newPosts = posts.filter(x => x.id !== postId)
+    const newPosts = posts.filter((x) => x.id !== postId)
     res.status(200).json(newPosts)
 })
 
