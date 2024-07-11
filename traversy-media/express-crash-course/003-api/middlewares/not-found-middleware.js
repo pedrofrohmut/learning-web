@@ -4,4 +4,4 @@ const notFoundMiddleware = (req, res, next) => {
     return next(error)
 }
 
-export default notFoundMiddleware
+module.exports = notFoundMiddleware

@@ -1,4 +1,4 @@
-import express from "express"
+const express = require("express")
 
 const router = express.Router()
 
@@ -50,6 +50,13 @@ router.get("/:id", (req, res, next) => {
 
 // Create post
 router.post("/", (req, res, next) => {
+    if (!req.body.id) {
+        //res.status(400).send("Post id is required")
+        const error = new Error("Post id is required")
+        error.status = 400
+        return next(error)
+    }
+
     if (!req.body.title) {
         //res.status(400).send("Post title is required")
         const error = new Error("Post title is required")
@@ -57,10 +64,7 @@ router.post("/", (req, res, next) => {
         return next(error)
     }
 
-    const newPost = { id: posts.lenght + 1, title: req.body.title }
-
-    //res.status(201).json([...posts, newPost])
-    res.status(201).json(newPost)
+    res.status(201).json([...posts, req.body])
 })
 
 // Update a post
@@ -113,4 +117,4 @@ router.delete("/:id", (req, res, next) => {
     res.status(200).json(newPosts)
 })
 
-export default router
+module.exports = router
