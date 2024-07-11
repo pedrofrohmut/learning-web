@@ -1,6 +1,8 @@
 const express = require("express")
 
 const loggerMiddleware = require("./middlewares/logger-middleware")
+const errorMiddleware = require("./middlewares/error-middleware")
+const notFoundMiddleware = require("./middlewares/not-found-middleware")
 const postsRoutes = require("./routes/posts-routes")
 
 const app = express()
@@ -16,6 +18,12 @@ app.use(loggerMiddleware)
 
 // Routes
 app.use("/api/posts", postsRoutes)
+
+// Route not found error middleware
+app.use(notFoundMiddleware)
+
+// Catch errors middleware
+app.use(errorMiddleware)
 
 const PORT = process.env.PORT || 8000
 

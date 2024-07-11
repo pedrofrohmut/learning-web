@@ -10,12 +10,14 @@ let posts = [
 ]
 
 // Get all posts
-router.get("/", (req, res) => {
+router.get("/", (req, res, next) => {
     const limit = parseInt(req.query.limit)
 
     if (req.query.limit !== undefined && isNaN(limit)) {
-        res.status(400).send("Invalid limit")
-        return
+        //res.status(400).send("Invalid limit")
+        const error = new Error("Invalid limit")
+        error.status = 400
+        return next(error)
     }
 
     if (limit > 0) {
@@ -27,44 +29,67 @@ router.get("/", (req, res) => {
 })
 
 // Get single post
-router.get("/:id", (req, res) => {
+router.get("/:id", (req, res, next) => {
     const postId = parseInt(req.params.id)
+    if (isNaN(postId)) {
+        const error = new Error("Invalid post id")
+        error.status = 400
+        return next(error)
+    }
 
     const found = posts.find((x) => x.id === postId)
     if (!found) {
-        res.status(404).send(`Post with id of ${postId} not found`)
-        return
+        //res.status(404).send(`Post with id of ${postId} not found`)
+        const error = new Error(`Post with id of ${postId} not found`)
+        error.status = 404
+        return next(error)
     }
 
     res.status(200).json(found)
 })
 
 // Create post
-router.post("/", (req, res) => {
+router.post("/", (req, res, next) => {
     if (!req.body.id) {
-        res.status(400).send("Post id is required")
-        return
+        //res.status(400).send("Post id is required")
+        const error = new Error("Post id is required")
+        error.status = 400
+        return next(error)
     }
+
     if (!req.body.title) {
-        res.status(400).send("Post title is required")
-        return
+        //res.status(400).send("Post title is required")
+        const error = new Error("Post title is required")
+        error.status = 400
+        return next(error)
     }
+
     res.status(201).json([...posts, req.body])
 })
 
 // Update a post
-router.put("/:id", (req, res) => {
+router.put("/:id", (req, res, next) => {
     const postId = parseInt(req.params.id)
+    if (isNaN(postId)) {
+        const error = new Error("Invalid post id")
+        error.status = 400
+        return next(error)
+    }
+
     const found = posts.find((x) => x.id === postId)
     if (!found) {
-        res.status(404).send(`Post with id of ${postId} not found`)
-        return
+        // res.status(404).send(`Post with id of ${postId} not found`)
+        const error = new Error(`Post with id of ${postId} not found`)
+        error.status = 404
+        return next(error)
     }
 
     const postTitle = req.body.title
     if (!postTitle) {
-        res.status(400).send("Post title is required")
-        return
+        // res.status(400).send("Post title is required")
+        const error = new Error("Post title is required")
+        error.status = 400
+        return next(error)
     }
 
     found.title = postTitle
@@ -72,12 +97,20 @@ router.put("/:id", (req, res) => {
 })
 
 // Delete a post
-router.delete("/:id", (req, res) => {
+router.delete("/:id", (req, res, next) => {
     const postId = parseInt(req.params.id)
+    if (isNaN(postId)) {
+        const error = new Error("Invalid post id")
+        error.status = 400
+        return next(error)
+    }
+
     const found = posts.find((x) => x.id === postId)
     if (!found) {
-        res.status(404).send(`Post with id of ${postId} not found`)
-        return
+        //res.status(404).send(`Post with id of ${postId} not found`)
+        const error = new Error(`Post with id of ${postId} not found`)
+        error.status = 404
+        return next(error)
     }
 
     const newPosts = posts.filter((x) => x.id !== postId)
