@@ -48,9 +48,49 @@
     /* Neutral Colors */
     --clr-very-dark-blue: hsl(234, 12%, 34%);
     --clr-grayish-blue: hsl(229, 6%, 66%);
+    --clr-darker-grayish-blue: hsl(229, 6%, 48%);
     --clr-light-gray: hsl(0, 0%, 98%);
 
     --clr-neutral-100: var(--clr-ligth-gray);
     --clr-neutral-400: var(--clr-grayish-blue);
+    --clr-neutral-500: var(--clr-darker-grayish-blue);
     --clr-neutral-900: var(--clr-very-dark-blue);
+}
+
+*, *::after, *::before {
+    /* font-size: inherit; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+html {
+    font-family: var(--ff-sans);
+    font-weigth: var(--fw-regular);
+    line-height: 1.7;
+    color: var(--clr-neutral-500);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--clr-neutral-900);
+    line-height: 1.1;
+    margin-bottom: 0.6em;
+}
+
+p {
+    margin-bottom: 0.4em;
+}
+
+.wrapper {
+    max-width: 1080px;
+    margin-inline: auto;
+}
+
+.wrapper--narrow {
+    max-width: 550px;
 }
