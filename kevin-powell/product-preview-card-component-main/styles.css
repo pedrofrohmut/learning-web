@@ -1,0 +1,121 @@
+/* Layout -> Mobile 375px and Desktop 1440px */
+
+:root {
+    /* Primary colors */
+    --clr-dark-cyan: hsl(158, 36%, 37%);
+    --clr-cream: hsl(30, 38%, 92%);
+
+    --clr-primary: var(--clr-dark-cyan);
+    --clr-secondary: var(--clr-cream);
+
+    /* Neutral colors */
+    --clr-very-dark-blue: hsl(212, 21%, 14%);
+    --clr-dark-grayish-blue: hsl(228, 12%, 48%);
+    --clr-white: hsl(0, 0%, 100%);
+
+    --clr-neutral-0: var(--clr-white);
+    --clr-neutral-400: var(--clr-dark-grayish-blue);
+    --clr-neutral-800: var(--clr-very-dark-blue);
+
+    --ff-montserrat: "Montserrat", sans-serif;
+    --ff-fraunces: "Fraunces", serif;
+
+    --ff-serif: var(--ff-fraunces);
+    --ff-sans-serif: var(--ff-montserrat);
+
+    --fs-small: 0.75rem; /* 12px */
+    --fs-md: 0.875rem;	 /* 14px */
+    --fs-large: 2.0rem;	 /* 32px */
+    --fs-larger: 2.5rem; /* 40px */
+
+    --fw-regular: 500;
+    --fw-bold: 700;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+}
+
+body {
+    font-size: var(--fs-md);
+    font-family: var(--ff-sans-serif);
+    background-color: var(--clr-secondary);
+    min-height: 100vh;
+}
+
+.card {
+    --border-radius: 12px;
+    background-color: var(--clr-neutral-0);
+    width: calc(100% - 2rem);
+    margin-inline: auto;
+    margin-block: 2rem;
+    border-radius: var(--border-radius);
+}
+
+.card__img {
+    max-width: 100%;
+    display: block;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.col-text {
+    padding: 1.4rem;
+    color: var(--clr-neutral-400);
+}
+
+.col-text > * {
+    margin-bottom: 1.0em;
+}
+
+.perfume {
+    text-transform: uppercase;
+}
+
+.product-name {
+    font-size: var(--fs-large);
+    font-family: var(--ff-serif);
+    font-weight: var(--fw-bold);
+    color: var(--clr-neutral-800);
+}
+
+.description {
+
+}
+
+.prices {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.prices__primary {
+    color: var(--clr-primary);
+    font-size: var(--fs-large);
+    font-weight: var(--fw-bold);
+    font-family: var(--ff-serif);
+}
+
+.prices__secondary {
+    font-size: var(--fs-small);
+    text-decoration: line-through;
+}
+
+.primary-button {
+    background-color: var(--clr-primary);
+    border: 1px solid var(--clr-primary);
+    border-radius: var(--border-radius);
+    width: 100%;
+    padding: 1em 0;
+    color: var(--clr-neutral-0);
+    font-weight: var(--fw-bold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0;
+}
