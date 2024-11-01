@@ -16,12 +16,21 @@
 </head>
 <body>
 
-  <div class="card">
-    <div class="col col-image">
-      <img class="card__img" alt="" src="./images/image-product-mobile.jpg"/>
+  <div class="card grid">
+    <div class="grid-item grid-item-image">
+      <picture>
+	<!-- Image for large screens -->
+	<source media="(min-width: 768px)" srcset="./images/image-product-desktop.jpg">
+
+	<!-- Image for smaller screens, like mobile -->
+	<source media="(max-width: 767px)" srcset="./images/image-product-mobile.jpg">
+
+	<!-- Fallback image if <source> elements are unsupported -->
+	<img class="card__img" src="./images/image-product-mobile.jpg" alt="Responsive image">
+      </picture>
     </div>
 
-    <div class="col col-text">
+    <div class="grid-item grid-item-text">
       <p class="perfume">Perfume</p>
 
       <h1 class="product-name">Gabrielle Essence Eau De Parfum</h1>
