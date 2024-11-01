@@ -69,11 +69,13 @@ body {
 }
 
 .col-text > * {
-    margin-bottom: 1.0em;
+    margin-bottom: 1.0rem;
 }
 
 .perfume {
+    font-size: var(--fs-small);
     text-transform: uppercase;
+    letter-spacing: 4px;
 }
 
 .product-name {
@@ -84,7 +86,7 @@ body {
 }
 
 .description {
-
+    line-height: 1.6;
 }
 
 .prices {
