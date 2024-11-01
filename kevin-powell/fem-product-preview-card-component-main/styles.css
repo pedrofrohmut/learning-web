@@ -3,10 +3,12 @@
 :root {
     /* Primary colors */
     --clr-dark-cyan: hsl(158, 36%, 37%);
+    --clr-darker-cyan: hsl(158, 36%, 17%);
     --clr-cream: hsl(30, 38%, 92%);
 
     --clr-primary: var(--clr-dark-cyan);
     --clr-secondary: var(--clr-cream);
+    --clr-hover: var(--clr-darker-cyan);
 
     /* Neutral colors */
     --clr-very-dark-blue: hsl(212, 21%, 14%);
@@ -55,21 +57,26 @@ body {
     background-color: var(--clr-neutral-0);
     border-radius: var(--border-radius);
     width: calc(100% - 2rem);
+    max-width: 375px;
     margin: 0 auto;
 }
 
+.card__picture, .card__img {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
 .card__img {
-    max-width: 100%;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .grid-item-text {
     padding: 1.4rem;
     color: var(--clr-neutral-400);
-}
-
-.grid-item-text > * {
-    margin-bottom: 1.0rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
 }
 
 .perfume {
@@ -120,26 +127,37 @@ body {
     justify-content: center;
     gap: 0.5rem;
     margin-bottom: 0;
+    cursor: pointer;
 }
 
-/* @media (min-width: 768px) { */
-/*     body { */
-/* 	display: flex; */
-/*     } */
+.primary-button:hover, .primary-button:focus {
+    background-color: var(--clr-hover);
+}
 
-/*     .card { */
-/* 	--max-card-width: 600px; */
-/* 	max-width: var(--max-card-width); */
-/* 	margin: auto; */
-/* 	display: flex; */
-/*     } */
+@media (min-width: 768px) {
+    body {
+	display: flex;
+    }
 
-/*     .grid-item { */
-/* 	max-width: calc(var(--max-card-width) / 2); */
-/*     } */
+    .card {
+	--max-card-width: 600px;
+	max-width: var(--max-card-width);
+	margin: auto;
+	display: flex;
+	box-shadow: 2px 2px 12px #d5d5d5;
+    }
 
-/*     .card__img { */
-/* 	border-radius: var(--border-radius) 0 0 var(--border-radius); */
-/* 	height: 100%; */
-/*     } */
-/* } */
+    .grid-item {
+	max-width: calc(var(--max-card-width) / 2);
+    }
+
+    .grid-item-text {
+	justify-content: center;
+	padding-right: 3rem;
+	gap: 1.3rem
+    }
+
+    .card__img {
+	border-radius: var(--border-radius) 0 0 var(--border-radius);
+    }
+}
