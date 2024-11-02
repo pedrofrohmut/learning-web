@@ -16,44 +16,52 @@
     */
 
     /* Primary colors */
-    --clr-light-red: hsl(0, 100%, 67%);
-    --clr-orangey-yellow: hsl(39, 100%, 56%);
-    --clr-green-teal: hsl(166, 100%, 37%);
-    --clr-cobalt-blue: hsl(234, 85%, 45%);
+    --clr-light-red: 0, 100%, 67%;
+    --clr-orangey-yellow: 39, 100%, 56%;
+    --clr-green-teal: 166, 100%, 37%;
+    --clr-cobalt-blue: 234, 85%, 45%;
 
-    --clr-primary-red: var(--clr-light-red);
-    --clr-primary-yellow: var(--clr-orangey-yellow);
-    --clr-primary-green: var(--clr-green-teal);
-    --clr-primary-blue: var(--clr-cobalt-blue);
+    --clr-primary-red: hsl(var(--clr-light-red));
+    --clr-primary-yellow: hsl(var(--clr-orangey-yellow));
+    --clr-primary-green: hsl(var(--clr-green-teal));
+    --clr-primary-blue: hsl(var(--clr-cobalt-blue));
 
     /* Gradient colors (background) */
     --clr-light-slate: hsl(252, 100%, 67%);
     --clr-light-royal-blue: hsl(241, 81%, 54%);
 
-    --clr-grad-back-purple: var(--clr-light-slate);
-    --clr-grad-back-blue: var(--clr-light-royal-blue);
+    --gradient-main: linear-gradient(var(--clr-light-slate), var(--clr-light-royal-blue));
 
     /* Gradient colors (circle) */
     --clr-violet-blue: hsla(256, 72%, 46%, 1);
     --clr-persian-blue: hsla(241, 72%, 46%, 0);
 
-    --clr-grad-circ-purple: var(--clr-violet-blue);
-    --clr-grad-circ-blue: var(--clr-persian-blue);
+    --gradient-dark: linear-gradient(var(--clr-violet-blue), var(--clr-persian-blue));
 
     /* Neutral colors */
-    --clr-white: hsl(0, 0%, 100%);
-    --clr-pale-blue: hsl(221, 100%, 96%);
-    --clr-light-lavender: hsl(241, 100%, 89%);
-    --clr-dark-gray-blue: hsl(224, 30%, 27%);
+    --clr-white: 0, 0%, 100%;
+    --clr-pale-blue: 221, 100%, 96%;
+    --clr-light-lavender: 241, 100%, 89%;
+    --clr-dark-gray-blue: 224, 30%, 27%;
 
-    --clr-neutral-0: var(--clr-white);
-    --clr-neutral-10: var(--clr-pale-blue);
-    --clr-neutral-40: var(--clr-light-lavender);
-    --clr-neutral-80: var(--clr-dark-gray-blue);
+    --clr-neutral-0: hsl(var(--clr-white));
+    --clr-neutral-10: hsla(var(--clr-pale-blue), 0.85);
+    --clr-neutral-40: hsl(var(--clr-light-lavender));
+    --clr-neutral-80: hsl(var(--clr-dark-gray-blue));
+
+    --clr-box-shadow: hsla(var(--clr-dark-gray-blue), 0.25);
 
     /* Font sizes (should always be in rem, never in px to avoid problems.
        The base is 16px -> x / 16 == rem value) */
-    --fs-regular: 1.125rem; 	/* 18px */
+    --fs-regular: 1.125rem; /* 18px */
+
+    --fs-30: 0.8125rem;	/* 13px */
+    --fs-40: 1rem;	/* 16px */
+    --fs-50: 1.125rem;	/* 18px */
+    --fs-60: 1.5rem;	/* 24px */
+    --fs-70: 1.75rem;	/* 28px */
+    --fs-80: 2rem;	/* 32px */
+    --fs-90: 2.25rem;	/* 36px */
 
     /* Font weights */
     --fw-regular: 500;
@@ -64,7 +72,97 @@
     --ff-sans-serif: "Hanken Grotesk", sans-serif;
 }
 
+*, *::after, *::before {
+    box-sizing: border-box;
+    border: 0;
+    margin: 0;
+    font-size: inherit;
+}
+
+img, svg {
+    display: block;
+    max-width: 100%;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: var(--clr-neutral-10);
+    font-family: var(--ff-sans-serif);
+    font-size: var(--fs-regular);
+    color: var(--clr-neutral-80);
+}
+
+.result-summary {
+    --border-radius: 2rem;
+    --padding: 3.75rem;
+    max-width: 375px;
+    margin: 0 auto;
+}
+
+.result {
+    text-align: center;
+    background: var(--gradient-main);
+    color: var(--clr-neutral-10);
+    padding: var(--padding);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.summary {
+    padding: var(--padding);
+}
 
 .summary-icon {
     outline: 1px dashed blue;
+}
+
+.button {
+    color: var(--clr-neutral-0);
+    background: var(--clr-neutral-80);
+    width: 100%;
+    padding: 1rem 2rem;
+    border: 0;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.button:focus, .button:hover {
+    background: var(--gradient-main);
+}
+
+/* Utility classes */
+
+.grid-flow {
+    display: grid;
+    align-content: start;
+    gap: 1.5rem;
+}
+
+.grid-flow[data-spacing="large"] {
+    gap: 2.5rem;
+}
+
+/* Media queries */
+
+@media (min-width: 740px) {
+    body {
+	display: grid;
+	place-items: center;
+    }
+
+    .result-summary {
+	margin-inline: 1rem;
+	max-width: 740px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	border-radius: var(--border-radius);
+	box-shadow: 0.75rem 1rem 3rem var(--clr-box-shadow);
+    }
+
+    .result {
+	border-radius: var(--border-radius);
+    }
 }
