@@ -1,0 +1,70 @@
+@font-face {
+    font-family: "Hanken Grotesk";
+    font-display: swap;
+    font-weight: 100 900;
+    src: url("assets/fonts/HankenGrotesk-VariableFont_wght.ttf")
+	 format("truetype");
+}
+
+:root {
+    /*
+      Colors will be defined twice because the first is the color name provided
+      from the guide, with the same name it calls it.
+      The second name here is the name to be used in the css file. Names that are
+      easy to use and do not have to keep checking back and forth for strange color
+      names.
+    */
+
+    /* Primary colors */
+    --clr-light-red: hsl(0, 100%, 67%);
+    --clr-orangey-yellow: hsl(39, 100%, 56%);
+    --clr-green-teal: hsl(166, 100%, 37%);
+    --clr-cobalt-blue: hsl(234, 85%, 45%);
+
+    --clr-primary-red: var(--clr-light-red);
+    --clr-primary-yellow: var(--clr-orangey-yellow);
+    --clr-primary-green: var(--clr-green-teal);
+    --clr-primary-blue: var(--clr-cobalt-blue);
+
+    /* Gradient colors (background) */
+    --clr-light-slate: hsl(252, 100%, 67%);
+    --clr-light-royal-blue: hsl(241, 81%, 54%);
+
+    --clr-grad-back-purple: var(--clr-light-slate);
+    --clr-grad-back-blue: var(--clr-light-royal-blue);
+
+    /* Gradient colors (circle) */
+    --clr-violet-blue: hsla(256, 72%, 46%, 1);
+    --clr-persian-blue: hsla(241, 72%, 46%, 0);
+
+    --clr-grad-circ-purple: var(--clr-violet-blue);
+    --clr-grad-circ-blue: var(--clr-persian-blue);
+
+    /* Neutral colors */
+    --clr-white: hsl(0, 0%, 100%);
+    --clr-pale-blue: hsl(221, 100%, 96%);
+    --clr-light-lavender: hsl(241, 100%, 89%);
+    --clr-dark-gray-blue: hsl(224, 30%, 27%);
+
+    --clr-neutral-0: var(--clr-white);
+    --clr-neutral-10: var(--clr-pale-blue);
+    --clr-neutral-40: var(--clr-light-lavender);
+    --clr-neutral-80: var(--clr-dark-gray-blue);
+
+    /* Font sizes (should always be in rem, never in px to avoid problems.
+       The base is 16px -> x / 16 == rem value) */
+    --fs-regular: 1.125rem; 	/* 18px */
+
+    /* Font weights */
+    --fw-regular: 500;
+    --fw-bold: 700;
+    --fw-bolder: 800;
+
+    /* Font families */
+    --ff-sans-serif: "Hanken Grotesk", sans-serif;
+}
+
+
+.summary-icon {
+    outline: 1px dashed blue;
+}
