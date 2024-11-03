@@ -2,18 +2,17 @@
     font-family: "Hanken Grotesk";
     font-display: swap;
     font-weight: 100 900;
-    src: url("assets/fonts/HankenGrotesk-VariableFont_wght.ttf")
-	 format("truetype");
+    src: url("assets/fonts/HankenGrotesk-VariableFont_wght.ttf") format("truetype");
 }
 
 :root {
     /*
-      Colors will be defined twice because the first is the color name provided
-      from the guide, with the same name it calls it.
-      The second name here is the name to be used in the css file. Names that are
-      easy to use and do not have to keep checking back and forth for strange color
-      names.
-    */
+    Colors will be defined twice because the first is the color name provided
+    from the guide, with the same name it calls it.
+    The second name here is the name to be used in the css file. Names that are
+    easy to use and do not have to keep checking back and forth for strange color
+    names.
+     */
 
     /* Primary colors */
     --clr-light-red: 0, 100%, 67%;
@@ -28,9 +27,14 @@
 
     /* Custom Primary */
     --clr-primary-light-red:hsla(0, 100%, 89%, 0.3);
-    --clr-primary-light-yellow: hsla(39, 100%, 90%, 0.4);
-    --clr-primary-light-green: hsla(166, 100%, 75%, 0.3);
-    --clr-primary-light-blue: hsla(234, 100%, 70%, 0.1);
+    --clr-primary-light-yellow: hsla(39, 100%, 85%, 0.4);
+    --clr-primary-light-green: hsla(166, 100%, 65%, 0.3);
+    --clr-primary-light-blue: hsla(234, 100%, 75%, 0.3);
+
+    --clr-primary-fixed-red: hsl(0, 100%, 42%);
+    --clr-primary-fixed-yellow: hsl(39, 100%, 28%);
+    --clr-primary-fixed-green: hsl(166, 100%, 22%);
+    --clr-primary-fixed-blue: hsl(234, 85%, 58%);
 
     /* Gradient colors (background) */
     --clr-light-slate: hsl(252, 100%, 67%);
@@ -54,8 +58,8 @@
     --clr-lighter-cream: 42, 100%, 97%;
 
     --clr-neutral-0: hsl(var(--clr-white));
-    --clr-neutral-10: hsla(var(--clr-pale-blue), 0.7);
-    --clr-neutral-15: hsla(var(--clr-pale-blue), 0.5);
+    --clr-neutral-10: hsla(var(--clr-pale-blue), 0.8);
+    --clr-neutral-15: hsla(var(--clr-pale-blue), 0.65);
     --clr-neutral-20: hsla(var(--clr-lighter-cream));
     --clr-neutral-40: hsl(var(--clr-light-lavender));
     --clr-neutral-80: hsl(var(--clr-dark-gray-blue));
@@ -63,7 +67,7 @@
     --clr-box-shadow: hsla(var(--clr-dark-gray-blue), 0.25);
 
     /* Font sizes (should always be in rem, never in px to avoid problems.
-       The base is 16px -> x / 16 == rem value) */
+    The base is 16px -> x / 16 == rem value) */
     --fs-regular: 1.125rem; /* 18px */
 
     --fs-30: 0.8125rem;	/* 13px */
@@ -115,7 +119,7 @@ body {
 
 .result-summary {
     --border-radius: 2rem;
-    max-width: 375px;
+    max-width: 480px;
     margin: 0 auto;
 }
 
@@ -162,7 +166,7 @@ body {
 .summary-item {
     font-size: var(--fs-50);
     font-weight: var(--fw-regular);
-    color: hsla(var(--clr-dark-gray-blue), 0.6);
+    color: hsla(var(--clr-dark-gray-blue), 0.7);
     border-radius: 0.5rem;
     padding: 1rem;
     background-color: hsla(var(--clr-lighter-cream), 0.7);
@@ -172,47 +176,47 @@ body {
     width: 290px;
 }
 
+.summary-item h3 {
+    font-weight: var(--fw-regular);
+}
+
 .summary-item b {
     color: var(--clr-neutral-80);
 }
 
-.summary-item .flex-group {
-    opacity: 0.8;
+.summary-item[data-item-type="accent-1"] .flex-group {
+    stroke: var(--clr-primary-fixed-red);
+    color: var(--clr-primary-fixed-red);
 }
 
-.summary-item:nth-child(1) .flex-group {
-    stroke: var(--clr-primary-red);
-    color: var(--clr-primary-red);
+.summary-item[data-item-type="accent-2"] .flex-group {
+    stroke: var(--clr-primary-fixed-yellow);
+    color: var(--clr-primary-fixed-yellow);
 }
 
-.summary-item:nth-child(2) .flex-group {
-    stroke: var(--clr-primary-yellow);
-    color: var(--clr-primary-yellow);
+.summary-item[data-item-type="accent-3"] .flex-group {
+    stroke: var(--clr-primary-fixed-green);
+    color: var(--clr-primary-fixed-green);
 }
 
-.summary-item:nth-child(3) .flex-group {
-    stroke: var(--clr-primary-green);
-    color: var(--clr-primary-green);
+.summary-item[data-item-type="accent-4"] .flex-group {
+    stroke: var(--clr-primary-fixed-blue);
+    color: var(--clr-primary-fixed-blue);
 }
 
-.summary-item:nth-child(4) .flex-group {
-    stroke: var(--clr-primary-blue);
-    color: var(--clr-primary-blue);
-}
-
-.summary-item:nth-child(1) {
+.summary-item[data-item-type="accent-1"] {
     background-color: var(--clr-primary-light-red);
 }
 
-.summary-item:nth-child(2) {
+.summary-item[data-item-type="accent-2"] {
     background-color: var(--clr-primary-light-yellow);
 }
 
-.summary-item:nth-child(3) {
+.summary-item[data-item-type="accent-3"] {
     background-color: var(--clr-primary-light-green);
 }
 
-.summary-item:nth-child(4) {
+.summary-item[data-item-type="accent-4"] {
     background-color: var(--clr-primary-light-blue);
 }
 
@@ -257,20 +261,20 @@ body {
 
 @media (min-width: 740px) {
     body {
-	display: grid;
-	place-items: center;
+        display: grid;
+        place-items: center;
     }
 
     .result-summary {
-	margin-inline: 1rem;
-	max-width: 740px;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	border-radius: var(--border-radius);
-	box-shadow: 0.75rem 1rem 3rem var(--clr-box-shadow);
+        margin-inline: 1rem;
+        max-width: 740px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-radius: var(--border-radius);
+        box-shadow: 0.75rem 1rem 3rem var(--clr-box-shadow);
     }
 
     .result {
-	border-radius: var(--border-radius);
+        border-radius: var(--border-radius);
     }
 }
