@@ -1,0 +1,85 @@
+/* Layouts: Mobile is 375px and Desktop is 1440px */
+
+@font-face {
+    font-family: "Roboto";
+    src: local("Roboto Regular"), /* The browser will first look local before downloading */
+	 url("./assets/fonts/Roboto-Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: local("Roboto Bold"), /* The browser will first look local before downloading */
+	 url("./assets/fonts/Roboto-Bold.ttf");
+    font-weight: 700;
+}
+
+/* Custom Properties */
+
+:root {
+    /* Color from the Guide with their names */
+
+    /* Guide - Primary */
+    --clr-tomato: 4, 100%, 67%;
+
+    /* Guide - Secondary */
+    --clr-dark-slate-grey: 234, 29%, 20%;
+    --clr-charcoal-grey: 235, 18%, 26%;
+    --clr-grey: 231, 7%, 60%;
+    --clr-white: 0, 0%, 100%;
+
+    /* Colors renamed for ease of use */
+    --clr-primary-orange: hsl(--clr-tomato);
+    --clr-neutral-00: hsl(--clr-white);
+    --clr-neutral-40: hsl(--clr-grey);
+    --clr-neutral-70: hsl(--clr-charcoal-grey);
+    --clr-neutral-80: hsl(--clr-dark-slate-grey);
+
+    /* Font */
+    font-size: 16px;
+
+    --ff-base: Roboto, sans-serif;
+
+    --fw-regular: 400;
+    --fw-bold: 700;
+
+    /* Always use rem for font sizes. Pixels can have problem with different dpi screens */
+    --fs-small: 0.5rem;
+    --fs-regular: 1rem;
+    --fs-large: 2.5rem;
+}
+
+
+/* CSS reset */
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+img, picture {
+    display: block;
+    max-width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, figure, blockquote, dl, dd {
+    margin: 0;
+}
+
+ul[role="list"], ol[role="list"] {
+    list-style: none;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/* Custom styles */
+
+body {
+    font-family: var(--ff-base);
+    font-size: var(--fs-regular);
+    font-weight: var(--fw-regular);
+}
