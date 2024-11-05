@@ -110,6 +110,9 @@ body {
     font-family: var(--ff-sans-serif);
     font-size: var(--fs-regular);
     color: var(--clr-neutral-80);
+
+    display: grid;
+    place-items: center;
 }
 
 .section-title {
@@ -119,8 +122,15 @@ body {
 
 .result-summary {
     --border-radius: 2rem;
-    max-width: 480px;
-    margin: 0 auto;
+    --col-size: 23.125rem;
+
+    width: min(740px, 100% - 2rem);
+    margin-inline: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0.75rem 1rem 3rem var(--clr-box-shadow);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .result {
@@ -128,7 +138,7 @@ body {
     background: var(--gradient-main);
     color: var(--clr-neutral-10);
     padding: 2.625rem 3.75rem;
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-radius: var(--border-radius);
 }
 
 .result__score {
@@ -140,6 +150,7 @@ body {
     margin-inline: auto;
     border-radius: 100%;
     aspect-ratio: 1 / 1;
+
     display: grid;
     place-content: center;
 }
@@ -170,10 +181,10 @@ body {
     border-radius: 0.5rem;
     padding: 1rem;
     background-color: hsla(var(--clr-lighter-cream), 0.7);
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 290px;
 }
 
 .summary-item h3 {
@@ -259,22 +270,26 @@ body {
 
 /* Media queries */
 
-@media (min-width: 740px) {
-    body {
-        display: grid;
-        place-items: center;
-    }
+/* @media (min-width: 740px) { */
+/*     body { */
+/*         display: grid; */
+/*         place-items: center; */
+/*     } */
 
-    .result-summary {
-        margin-inline: 1rem;
-        max-width: 740px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        border-radius: var(--border-radius);
-        box-shadow: 0.75rem 1rem 3rem var(--clr-box-shadow);
-    }
+/*     .result-summary { */
+/*         margin-inline: 1rem; */
+/*         max-width: 740px; */
+/*         display: grid; */
+/*         grid-template-columns: 1fr 1fr; */
+/*         border-radius: var(--border-radius); */
+/*         box-shadow: 0.75rem 1rem 3rem var(--clr-box-shadow); */
+/*     } */
 
-    .result {
-        border-radius: var(--border-radius);
-    }
+/*     .result { */
+/*         border-radius: var(--border-radius); */
+/*     } */
+/* } */
+
+@media (max-width: 680px) {
+
 }
