@@ -18,7 +18,10 @@
 
 :root {
     /* Primary colors */
-    --clr-primary-orange: hsl(4, 100%, 67%);
+    --clr-accent-lightorange: hsl(5, 100%, 95%);
+    --clr-accent-orange: hsl(4, 100%, 67%);
+    --clr-accent-darkorange: hsl(14, 100%, 61%);
+    --clr-accent-pink: hsl(346, 100%, 67%);
 
     /* Neutral colors */
     --clr-neutral-00: hsl(0, 0%, 100%);
@@ -27,6 +30,12 @@
     --clr-neutral-40: hsl(231, 7%, 60%);
     --clr-neutral-70: hsl(235, 18%, 26%);
     --clr-neutral-80: hsl(234, 29%, 20%);
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(90deg, var(--clr-accent-pink), var(--clr-accent-orange));
+
+    /* Box shadow */
+    --box-shadow: 0px 15px 20px 15px hsla(4, 100%, 61%, 0.2);
 
     /* Font sizes
        - Always use rem for font sizes. Pixels can have problem with different dpi screens
@@ -124,6 +133,7 @@ body {
     display: grid;
     gap: 0.5rem;
     margin-bottom: 1.4rem;
+    grid-template-columns: 1fr 1fr;
 }
 
 .newsletter-cta label {
@@ -133,6 +143,7 @@ body {
 }
 
 .newsletter-cta input {
+    grid-column: 1 / -1;
     padding: 1.0em 1.4em;
     border-radius: var(--border-radius);
     border: 1px solid var(--clr-neutral-30);
@@ -141,6 +152,28 @@ body {
 
 .newsletter-cta input::placeholder {
     color: var(--clr-neutral-40);
+}
+
+/* Input is invalid but not focused */
+.newsletter-cta input:not(:focus):invalid {
+    color: var(--clr-accent-orange);
+    border-color: var(--clr-accent-orange);
+    background-color: var(--clr-accent-lightorange);
+}
+
+.newsletter-cta .error-message {
+    font-size: var(--fs-small);
+    font-weight: var(--fw-bold);
+    color: var(--clr-accent-orange);
+    text-align: right;
+    grid-row: 1;
+    grid-column: 2;
+    display: none;
+}
+
+/* Display the .error-message when the input is invalid and is not focused */
+.newsletter-cta input:not(:focus):invalid + .error-message {
+    display: block;
 }
 
 .newsletter-cta .button {
@@ -152,4 +185,11 @@ body {
     font-weight: var(--fw-bold);
     width: 100%;
     padding: 1.0em 0 0.75em;
+}
+
+.newsletter-cta .button:hover,
+.newsletter-cta .button:focus-visible {
+    background: var(--gradient-primary);
+    box-shadow: var(--box-shadow);
+    outline: 2px solid var(--clr-neutral-80);
 }
