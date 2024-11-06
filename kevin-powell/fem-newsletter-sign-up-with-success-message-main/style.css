@@ -34,9 +34,6 @@
     /* Gradients */
     --gradient-primary: linear-gradient(90deg, var(--clr-accent-pink), var(--clr-accent-orange));
 
-    /* Box shadow */
-    --box-shadow: 0px 15px 20px 15px hsla(4, 100%, 61%, 0.2);
-
     /* Font sizes
        - Always use rem for font sizes. Pixels can have problem with different dpi screens
        - Base is 16px. To calculate the size divide the size you want for 16
@@ -51,6 +48,10 @@
     /* Font weight */
     --fw-regular: 400;
     --fw-bold: 700;
+
+    /* Box shadow */
+    --box-shadow: 0px 15px 20px 15px hsla(4, 100%, 61%, 0.2);
+    --border-radius: 0.5rem;
 }
 
 
@@ -63,6 +64,7 @@
 img, picture {
     display: block;
     max-width: 100%;
+    height: auto;
 }
 
 h1, h2, h3, h4, h5, h6, figure, blockquote, dl, dd {
@@ -94,12 +96,20 @@ body {
     font-weight: var(--fw-regular);
     color: var(--clr-neutral-80);
     line-height: 1.5;
+    background-color: var(--clr-neutral-70);
+
+    display: flex;
+}
+
+.newsletter-cta {
+    background-color: var(--clr-neutral-00);
 }
 
 .newsletter-cta > .content {
     padding: 2rem 1.4rem;
+
     display: grid;
-    gap: 1.4rem;
+    gap: 1.5rem;
 }
 
 .newsletter-cta > .content > * {
@@ -123,10 +133,6 @@ body {
 
 .checkmark-list li::before {
     content: url("./assets/images/icon-list.svg");
-}
-
-.newsletter-cta form {
-    --border-radius: 0.5rem;
 }
 
 .newsletter-cta .form-group {
@@ -184,7 +190,7 @@ body {
     font-size: var(--fs-regular);
     font-weight: var(--fw-bold);
     width: 100%;
-    padding: 1.0em 0 0.75em;
+    padding: 1.2em 0 0.9em;
 }
 
 .newsletter-cta .button:hover,
@@ -192,4 +198,41 @@ body {
     background: var(--gradient-primary);
     box-shadow: var(--box-shadow);
     outline: 2px solid var(--clr-neutral-80);
+}
+
+/* Card has width of 930px at 1440px (desktop) */
+@media(min-width: 768px) {
+    :root {
+	--fs-large: 3.5rem; /* 56px */
+    }
+
+    .newsletter-cta {
+	max-width: 930px;
+	margin: auto;
+	padding: 2rem;
+	border-radius: 2rem;
+
+	display: grid;
+	gap: 1.4rem;
+	place-content: center;
+	grid-template-columns: auto 400px;
+	grid-template-areas: "content image";
+    }
+
+    .newsletter-cta picture {
+	grid-area: image;
+    }
+
+    .newsletter-cta .content {
+	grid-area: content;
+	padding: 4rem 2rem;
+    }
+
+    .newsletter-cta .title {
+	line-height: 1;
+    }
+
+    .newsletter-cta .checkmark-list {
+	margin-bottom: 1rem;
+    }
 }
