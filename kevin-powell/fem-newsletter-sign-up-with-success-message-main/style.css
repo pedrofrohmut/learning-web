@@ -65,6 +65,7 @@ img, picture {
     display: block;
     max-width: 100%;
     height: auto;
+    margin-inline: auto;
 }
 
 h1, h2, h3, h4, h5, h6, figure, blockquote, dl, dd {
@@ -103,6 +104,7 @@ body {
 
 .newsletter-cta {
     background-color: var(--clr-neutral-00);
+    margin-inline: auto;
 }
 
 .newsletter-cta > .content {
@@ -203,19 +205,21 @@ body {
 /* Card has width of 930px at 1440px (desktop) */
 @media(min-width: 768px) {
     :root {
-	--fs-large: 3.5rem; /* 56px */
+	--fs-regular: 0.875rem; /* 14px */
+	--max-width-card: 830px;
     }
 
     .newsletter-cta {
-	max-width: 930px;
+	/* Make it max of xxx but when smaller lets 1rem at sides */
+	width: min(var(--max-width-card), 100% - 2rem);
 	margin: auto;
 	padding: 2rem;
 	border-radius: 2rem;
 
 	display: grid;
 	gap: 1.4rem;
-	place-content: center;
-	grid-template-columns: auto 400px;
+	align-items: center;
+	grid-template-columns: 1fr 0.8fr;
 	grid-template-areas: "content image";
     }
 
@@ -225,7 +229,7 @@ body {
 
     .newsletter-cta .content {
 	grid-area: content;
-	padding: 4rem 2rem;
+	padding: 0 2rem;
     }
 
     .newsletter-cta .title {
@@ -234,5 +238,17 @@ body {
 
     .newsletter-cta .checkmark-list {
 	margin-bottom: 1rem;
+    }
+}
+
+@media(min-width: 1024px) {
+    :root {
+	--fs-large: 3.5rem; /* 56px */
+	--fs-regular: 1rem; /* 16px */
+	--max-width-card: 930px;
+    }
+
+    .newsletter-cta {
+	grid-template-columns: 1fr max-content;
     }
 }
