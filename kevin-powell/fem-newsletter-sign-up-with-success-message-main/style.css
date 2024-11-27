@@ -205,50 +205,50 @@ body {
 /* Card has width of 930px at 1440px (desktop) */
 @media(min-width: 768px) {
     :root {
-	--fs-regular: 0.875rem; /* 14px */
-	--max-width-card: 830px;
+        --fs-regular: 0.875rem; /* 14px */
+        --max-width-card: 830px;
     }
 
     .newsletter-cta {
-	/* Make it max of xxx but when smaller lets 1rem at sides */
-	width: min(var(--max-width-card), 100% - 2rem);
-	margin: auto;
-	padding: 2rem;
-	border-radius: 2rem;
+        /* Make it max of xxx but when smaller lets 1rem at sides */
+        width: min(var(--max-width-card), 100% - 2rem);
+        margin: auto;
+        padding: 2rem;
+        border-radius: 2rem;
 
-	display: grid;
-	gap: 1.4rem;
-	align-items: center;
-	grid-template-columns: 1fr 0.8fr;
-	grid-template-areas: "content image";
+        display: grid;
+        gap: 1.4rem;
+        align-items: center;
+        grid-template-columns: 1fr 0.8fr;
+        grid-template-areas: "content image";
     }
 
     .newsletter-cta picture {
-	grid-area: image;
+        grid-area: image;
     }
 
     .newsletter-cta .content {
-	grid-area: content;
-	padding: 0 2rem;
+        grid-area: content;
+        padding: 0 2rem;
     }
 
     .newsletter-cta .title {
-	line-height: 1;
+        line-height: 1;
     }
 
     .newsletter-cta .checkmark-list {
-	margin-bottom: 1rem;
+        margin-bottom: 1rem;
     }
 }
 
 @media(min-width: 1024px) {
     :root {
-	--fs-large: 3.5rem; /* 56px */
-	--fs-regular: 1rem; /* 16px */
-	--max-width-card: 930px;
+        --fs-large: 3.5rem; /* 56px */
+        --fs-regular: 1rem; /* 16px */
+        --max-width-card: 930px;
     }
 
     .newsletter-cta {
-	grid-template-columns: 1fr max-content;
+        grid-template-columns: 1fr max-content;
     }
 }
