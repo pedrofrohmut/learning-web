@@ -1,0 +1,40 @@
+:root {
+    --fs-regular: 1.875rem;
+    --clr-lightred: hsl(336, 100%, 50%);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: var(--fs-regular);
+    min-height: 100vh;
+    background-color: hsl(200, 70%, 93%);
+}
+
+.box {
+    padding: 1rem;
+    border: 2px solid var(--clr-lightred);
+
+    display: grid;
+    place-items: center;
+}
+
+.beginner {
+    --beginner-padding: 1.5rem;
+
+    min-height: calc(100vh - (var(--beginner-padding) * 2));
+    width: calc(100% - (var(--beginner-padding) * 2));
+    margin: var(--beginner-padding) auto;
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: calc(var(--beginner-padding) / 3);
+}
+
+.beginner .box {
+    background-color: hsla(204, 70%, 82%, 1.0);
+}
