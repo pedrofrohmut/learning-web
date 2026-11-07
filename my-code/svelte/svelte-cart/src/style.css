@@ -1,0 +1,16 @@
+:root {
+  --page-max: 900px;
+}
+
+html,
+body,
+#app {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+body {
+    background-color: #232323;
+    color: #cecece;
+}
