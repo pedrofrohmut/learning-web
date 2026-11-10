@@ -1,5 +1,31 @@
 :root {
   --page-max: 900px;
+
+  --ff-main: "Roboto", sans-serif;
+
+  --fs-small: 0.85rem;
+  --fs-regular: 1rem;
+  --fs-large: 1.2rem;
+  --fs-extra-large: 1.5rem;
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+}
+
+/* .roboto-<uniquifier> { */
+/*   font-family: "Roboto", sans-serif; */
+/*   font-optical-sizing: auto; */
+/*   font-weight: <weight>; */
+/*   font-style: normal; */
+/*   font-variation-settings: */
+/*     "wdth" 100; */
+/* } */
+
+* {
+  box-sizing: border-box;
+  font-family: var(--ff-main);
 }
 
 html,
@@ -13,4 +39,11 @@ body,
 body {
     background-color: #232323;
     color: #cecece;
+    font-size: var(--fs-regular);
+    font-weight: var(--fw-regular);
+}
+
+image {
+  position: relative;
+  max-width: 100%;
 }
