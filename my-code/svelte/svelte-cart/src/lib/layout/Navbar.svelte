@@ -1,8 +1,22 @@
+<script>
+  import Modal from "../components/Modal.svelte"
+
+  const { toggleModal, items, showModal } = $props()
+</script>
+
 <header>
   <div class="container">
     <h1 class="logo">ShopMate</h1>
 
-    <button class="cart-btn"> <i class="fa-solid fa-cart-shopping"></i> Cart </button>
+    <div class="root">
+      <button class="cart-btn" onclick={toggleModal}>
+        <i class="fa-solid fa-cart-shopping"></i> Cart
+      </button>
+
+      {#if showModal}
+        <Modal {items} {toggleModal} />
+      {/if}
+    </div>
   </div>
 </header>
 

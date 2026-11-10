@@ -1,17 +1,24 @@
 <script>
-  import Navbar from "./lib/layout/Navbar.svelte"
   import { onMount } from "svelte"
 
+  import Navbar from "./lib/layout/Navbar.svelte"
+
   let products = $state([])
+  let showModal = $state(false)
+  let items = $state([])
 
   onMount(async () => {
     const response = await fetch("http://localhost:5000/products")
     products = await response.json()
     console.log(products)
   })
+
+  const toggleModal = () => {
+    showModal = !showModal
+  }
 </script>
 
-<Navbar />
+<Navbar {toggleModal} {items} {showModal} />
 
 <main>
   <h2 class="title">Product Catalog</h2>
