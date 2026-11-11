@@ -3,9 +3,15 @@
 
   import Navbar from "./lib/layout/Navbar.svelte"
 
+  const initialCart = {
+    amount: 0,
+    total: 0,
+    items: [], // Item: { id: number, amount: number }
+  }
+
   let products = $state([])
   let showModal = $state(false)
-  let items = $state([])
+  let cart = $state(initialCart)
 
   onMount(async () => {
     const response = await fetch("http://localhost:5000/products")
@@ -16,9 +22,38 @@
   const toggleModal = () => {
     showModal = !showModal
   }
+
+  const addItem = (product) => {
+    cart.amount++
+    cart.total += product.price
+    const hasItem = cart.items.some(item => item.id === product.id)
+
+    if (!hasItem) {
+      const newItem = { id: product.id, name: product.name, price: product.price, amount: 1 }
+      cart.items = [...cart.items, newItem]
+      return
+    }
+
+    cart.items = cart.items.map(item => {
+      if (item.id === product.id) {
+        return { ...item, amount: item.amount + 1 }
+      }
+      return item
+    })
+  }
+
+  const clearCart = () => {
+    if (!confirm("Clear Cart?")) return
+
+    cart.amount = 0
+    cart.total = 0
+    cart.items = []
+  }
 </script>
 
-<Navbar {toggleModal} {items} {showModal} />
+<Navbar {toggleModal} {cart} {showModal} {clearCart} />
+
+<!-- <pre>{JSON.stringify(cart, null, 4)}</pre> -->
 
 <main>
   <h2 class="title">Product Catalog</h2>
@@ -30,7 +65,7 @@
         <div class="name">{product.name}</div>
         <div class="description">{product.description}</div>
         <div class="price">R$ {product.price}</div>
-        <button>Add to cart</button>
+        <button onclick={() => addItem(product)}>Add to cart</button>
       </div>
     {/each}
   </div>

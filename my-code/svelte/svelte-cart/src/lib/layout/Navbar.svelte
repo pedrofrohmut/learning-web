@@ -1,7 +1,7 @@
 <script>
   import Modal from "../components/Modal.svelte"
 
-  const { toggleModal, items, showModal } = $props()
+  const { toggleModal, cart, showModal, clearCart } = $props()
 </script>
 
 <header>
@@ -13,8 +13,12 @@
         <i class="fa-solid fa-cart-shopping"></i> Cart
       </button>
 
+      {#if cart.amount > 0}
+        <div class="cart-amount">{cart.amount}</div>
+      {/if}
+
       {#if showModal}
-        <Modal {items} {toggleModal} />
+        <Modal {cart} {toggleModal} {clearCart} />
       {/if}
     </div>
   </div>
@@ -41,9 +45,6 @@
   }
 
   .cart-btn {
-    /* background-color: #999; */
-    /* color: #333; */
-
     background: none;
     color: #cecece;
     border: 2px solid #cecece;
@@ -63,5 +64,21 @@
 
   .cart-btn i {
     font-size: 20px;
+  }
+
+  .root {
+    position: relative;
+  }
+
+  .cart-amount {
+    position: absolute;
+    background-color: #44c;
+    color: #cecece;
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-small);
+    border-radius: 6px;
+    padding: 2px 5px;
+    top: -6px;
+    right: -6px;
   }
 </style>
