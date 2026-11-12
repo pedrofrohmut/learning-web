@@ -1,7 +1,7 @@
 <script>
   import Modal from "../components/Modal.svelte"
 
-  const { toggleModal, cart, showModal, clearCart } = $props()
+  const { toggleModal, cart, showModal, clearCart, removeCartItem } = $props()
 </script>
 
 <header>
@@ -18,7 +18,7 @@
       {/if}
 
       {#if showModal}
-        <Modal {cart} {toggleModal} {clearCart} />
+        <Modal {cart} {toggleModal} {clearCart} {removeCartItem} />
       {/if}
     </div>
   </div>

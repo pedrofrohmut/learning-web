@@ -1,12 +1,14 @@
 <script>
-  const { cart, toggleModal, clearCart } = $props()
+  const { cart, toggleModal, clearCart, removeCartItem } = $props()
 </script>
+
+<div class="modal-overlay" onclick={toggleModal}></div>
 
 <div class="root">
   <div class="modal">
     <div class="header">
       <div class="title">Cart Items</div>
-      <button class="close-btn" onclick={toggleModal}>X</button>
+      <button class="close-btn" title="Close cart" onclick={toggleModal}>X</button>
     </div>
 
     {#if cart.amount < 1}
@@ -28,7 +30,7 @@
                 <i class="fa-solid fa-pencil"></i>
               </div>
 
-              <div class="cart-remove" title="Remove Item">
+              <div class="cart-remove" title="Remove Item" onclick={() => removeCartItem(item)}>
                 <i class="fa-solid fa-trash"></i>
               </div>
             </div>
@@ -39,7 +41,9 @@
 
       <div class="cart-total">Total: R$ {cart.total}</div>
 
-      <button class="cart-clear" onclick={clearCart}>Clear cart</button>
+      <button class="cart-clear" onclick={clearCart} title="Clear cart items">
+        <i class="fa-solid fa-trash"></i> Clear cart
+      </button>
     {/if}
   </div>
 </div>
@@ -49,6 +53,13 @@
     position: relative;
   }
 
+  .modal-overlay {
+    position: fixed;
+    inset: 0 0 0 0;
+    background-color: #181818;
+    opacity: 0.8;
+  }
+
   .modal {
     position: absolute;
     top: 0.4rem;
@@ -56,9 +67,9 @@
     background-color: #cecece;
     color: #333;
     border-radius: 8px;
-    box-shadow: 2px 2px 12px 2px #444;
+    /* box-shadow: 2px 2px 12px 2px #444; */
     padding: 1.2rem;
-    width: 280px;
+    width: 320px;
   }
 
   .header {
@@ -85,7 +96,7 @@
   }
 
   .cart-item {
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -129,9 +140,19 @@
     background-color: #f66;
     border: 0;
     border-radius: 4px;
-    padding: 4px 0;
+    padding: 6px 0;
     width: 100%;
     font-size: var(--fs-regular);
     font-weight: var(--fw-bold);
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .cart-clear i {
+    font-size: 14px;
   }
 </style>

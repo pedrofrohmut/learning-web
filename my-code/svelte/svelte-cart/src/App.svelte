@@ -6,7 +6,7 @@
   const initialCart = {
     amount: 0,
     total: 0,
-    items: [], // Item: { id: number, amount: number }
+    items: [], // Item: { id: number, name: string, price: number, amount: number }
   }
 
   let products = $state([])
@@ -19,13 +19,15 @@
     console.log(products)
   })
 
+  const fixPrice = price => Math.round(price * 100) / 100
+
   const toggleModal = () => {
     showModal = !showModal
   }
 
   const addItem = (product) => {
     cart.amount++
-    cart.total += product.price
+    cart.total = fixPrice(cart.total + product.price)
     const hasItem = cart.items.some(item => item.id === product.id)
 
     if (!hasItem) {
@@ -49,9 +51,20 @@
     cart.total = 0
     cart.items = []
   }
+
+  const removeCartItem = (item) => {
+    // Reduce total price
+    cart.total = fixPrice(cart.total - (item.price * item.amount))
+
+    // Reduce amount
+    cart.amount -= item.amount
+
+    // Remove item from cart
+    cart.items = cart.items.filter(x => x.id !== item.id)
+  }
 </script>
 
-<Navbar {toggleModal} {cart} {showModal} {clearCart} />
+<Navbar {toggleModal} {cart} {showModal} {clearCart} {removeCartItem} />
 
 <!-- <pre>{JSON.stringify(cart, null, 4)}</pre> -->
 
