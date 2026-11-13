@@ -16,7 +16,7 @@
   onMount(async () => {
     const response = await fetch("http://localhost:5000/products")
     products = await response.json()
-    console.log(products)
+    // console.log(products)
   })
 
   const fixPrice = price => Math.round(price * 100) / 100
@@ -45,7 +45,7 @@
   }
 
   const clearCart = () => {
-    if (!confirm("Clear Cart?")) return
+    if (!confirm("Are you sure you want to clear the cart?")) return
 
     cart.amount = 0
     cart.total = 0
@@ -53,6 +53,8 @@
   }
 
   const removeCartItem = (item) => {
+    if (!confirm("Are you sure you want to remove this item?")) return
+
     // Reduce total price
     cart.total = fixPrice(cart.total - (item.price * item.amount))
 
@@ -62,9 +64,43 @@
     // Remove item from cart
     cart.items = cart.items.filter(x => x.id !== item.id)
   }
+
+  const incAmount = (item) => {
+    // Limit rule
+    if (item.amount > 98) return
+
+    // Change  amount
+    for (const x of cart.items) {
+      if (x.id === item.id) {
+        x.amount += 1
+        break
+      }
+    }
+
+    // Update cart
+    cart.total = fixPrice(cart.total + item.price)
+    cart.amount += 1
+  }
+
+  const decAmount = (item) => {
+    // Limit rule
+    if (item.amount < 2) return
+
+    // Decrement amount
+    for (const x of cart.items) {
+      if (x.id === item.id) {
+        x.amount -= 1
+        break
+      }
+    }
+
+    // Update cart
+    cart.total = fixPrice(cart.total - item.price)
+    cart.amount -= 1
+  }
 </script>
 
-<Navbar {toggleModal} {cart} {showModal} {clearCart} {removeCartItem} />
+<Navbar {toggleModal} {cart} {showModal} {clearCart} {removeCartItem} {incAmount} {decAmount} />
 
 <!-- <pre>{JSON.stringify(cart, null, 4)}</pre> -->
 

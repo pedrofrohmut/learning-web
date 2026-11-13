@@ -1,5 +1,5 @@
 <script>
-  const { cart, toggleModal, clearCart, removeCartItem } = $props()
+  const { cart, toggleModal, clearCart, removeCartItem, incAmount, decAmount } = $props()
 </script>
 
 <div class="modal-overlay" onclick={toggleModal}></div>
@@ -22,12 +22,18 @@
 
             <div class="cart-content">
               <div class="cart-name">{item.name}</div>
-              <div class="cart-price">{item.amount} x R$ {item.price}</div>
+              <div class="cart-price">R$ {item.price}</div>
             </div>
 
             <div class="cart-buttons">
-              <div class="cart-edit" title="Edit Cart">
-                <i class="fa-solid fa-pencil"></i>
+              <div class="price-amount-buttons">
+                <button class="price-minus" onclick={() => decAmount(item)}>
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+                <div class="price-amount">{item.amount}</div>
+                <button class="price-plus" onclick={() => incAmount(item)}>
+                  <i class="fa-solid fa-plus"></i>
+                </button>
               </div>
 
               <div class="cart-remove" title="Remove Item" onclick={() => removeCartItem(item)}>
@@ -69,7 +75,7 @@
     border-radius: 8px;
     /* box-shadow: 2px 2px 12px 2px #444; */
     padding: 1.2rem;
-    width: 320px;
+    width: 375px;
   }
 
   .header {
@@ -104,7 +110,7 @@
 
   .cart-buttons {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     gap: 10px;
   }
 
@@ -127,8 +133,35 @@
   }
 
   .cart-price {
-    font-size: var(--fs-small);
-    color: #777;
+    font-size: 0.9rem;
+    color: #14f;
+  }
+
+  .price-amount-buttons {
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+  }
+
+  .price-minus,
+  .price-plus,
+  .price-amount {
+    font-size: 14px;
+  }
+
+  .price-plus, .price-minus {
+    color: #66f;
+    background: none;
+    border: 0;
+    padding: 2px 4px;
+    cursor: pointer;
+  }
+
+  .price-amount {
+    width: 45px;
+    text-align: center;
   }
 
   .cart-total {
