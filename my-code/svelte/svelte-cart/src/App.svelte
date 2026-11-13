@@ -9,14 +9,30 @@
     items: [], // Item: { id: number, name: string, price: number, amount: number }
   }
 
+  const initCartLS = () => {
+    const lsCart = localStorage.getItem("cart")
+    if (!lsCart) {
+      localStorage.setItem("cart", JSON.stringify(initialCart))
+      return initialCart
+    }
+    return JSON.parse(lsCart)
+  }
+
+  const updateCartLS = (cart) => {
+    if (cart) {
+      localStorage.setItem("cart", JSON.stringify(cart))
+    }
+  }
+
   let products = $state([])
   let showModal = $state(false)
-  let cart = $state(initialCart)
+  let cart = $state({})
 
   onMount(async () => {
     const response = await fetch("http://localhost:5000/products")
     products = await response.json()
-    // console.log(products)
+
+    cart = initCartLS()
   })
 
   const fixPrice = price => Math.round(price * 100) / 100
@@ -31,17 +47,19 @@
     const hasItem = cart.items.some(item => item.id === product.id)
 
     if (!hasItem) {
+      // If cart doesnt have item add new
       const newItem = { id: product.id, name: product.name, price: product.price, amount: 1 }
-      cart.items = [...cart.items, newItem]
-      return
+      cart.items = cart.items.concat(newItem)
+    } else {
+      // Increase amount if item is already present
+      for (const item of cart.items) {
+        if (item.id === product.id) {
+          item.amount += 1
+        }
+      }
     }
 
-    cart.items = cart.items.map(item => {
-      if (item.id === product.id) {
-        return { ...item, amount: item.amount + 1 }
-      }
-      return item
-    })
+    updateCartLS(cart)
   }
 
   const clearCart = () => {
@@ -50,6 +68,8 @@
     cart.amount = 0
     cart.total = 0
     cart.items = []
+
+    updateCartLS(cart)
   }
 
   const removeCartItem = (item) => {
@@ -63,6 +83,8 @@
 
     // Remove item from cart
     cart.items = cart.items.filter(x => x.id !== item.id)
+
+    updateCartLS(cart)
   }
 
   const incAmount = (item) => {
@@ -80,6 +102,8 @@
     // Update cart
     cart.total = fixPrice(cart.total + item.price)
     cart.amount += 1
+
+    updateCartLS(cart)
   }
 
   const decAmount = (item) => {
@@ -97,11 +121,14 @@
     // Update cart
     cart.total = fixPrice(cart.total - item.price)
     cart.amount -= 1
+
+    updateCartLS(cart)
   }
 </script>
 
 <Navbar {toggleModal} {cart} {showModal} {clearCart} {removeCartItem} {incAmount} {decAmount} />
 
+<!-- Debug cart -->
 <!-- <pre>{JSON.stringify(cart, null, 4)}</pre> -->
 
 <main>
